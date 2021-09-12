@@ -1,0 +1,5 @@
+-- DROP DATABASE
+DROP DATABASE IF EXISTS middle_earth_db;
+
+-- CREATE DATABASE
+CREATE DATABASE middle_earth_db;
