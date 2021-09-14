@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOTR-RPG</title>
+</head>
+
+<body>
+    <header>
+        Choose your next adventure!
+        <nav>
+            {{#if loggedIn}}
+            <nav>
+                {{!-- put log out button here along w/ dashboard route. --}}
+            </nav>
+            {{#else}}
+            <div>
+                {{!-- point to the login route w/ the login button. --}}
+            </div>
+            {{/if}}
+        </nav>
+    </header>
+    <main>
+        {{{ body }}}
+    </main>
+    {{!-- link the page to the logout js file but only if they are logged in. --}}
+    {{#if loggedIn}}
+    <script src="/javascript/logout.js"></script>
+    {{/if}}
+</body>
+
+</html>
