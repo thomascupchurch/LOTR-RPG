@@ -1,15 +1,19 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Wizard extends Model {}
+class Scores extends Model {}
 
-Wizard.init(
+Scores.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
+    },
+    score: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -24,8 +28,8 @@ Wizard.init(
     freezeTableName: true,
     timestamps: true,
     underscored: true,
-    modelName: "wizard",
+    modelName: "scores",
   }
 );
 
-module.exports = Wizard;
+module.exports = Scores;
