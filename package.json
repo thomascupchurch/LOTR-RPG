@@ -2,9 +2,10 @@
   "name": "lotr-rpg",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -17,10 +18,16 @@
   },
   "homepage": "https://github.com/thomascupchurch/LOTR-RPG#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.2",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-handlebars": "^5.3.3",
+    "express-session": "^1.17.2",
     "handlebars": "^4.7.7",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.0",
+    "rpg-bars": "^1.1.0",
     "sequelize": "^6.6.5"
   }
 }
