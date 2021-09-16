@@ -23,11 +23,11 @@ Game.prototype.initializeGame = function() {
         .prompt({
             type: 'text',
             name: 'name',
-            message: 'What is your name?'
+            message: 'What is your character\'s name?'
         })
         // destructure name from the prompt object
         .then(({ name }) => {
-            this.player = new Player(name);
+            this.User = new User(name);
 
             // test the object creation
             this.startNewBattle();
