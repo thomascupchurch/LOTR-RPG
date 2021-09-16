@@ -28,7 +28,7 @@ Health.init(
     freezeTableName: true,
     timestamps: true,
     underscored: true,
-    modelName: "scores",
+    modelName: "health",
   }
 );
 

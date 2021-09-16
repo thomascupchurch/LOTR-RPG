@@ -1,9 +1,10 @@
 const router = require("express").Router();
 
 //will add the rest of the models here as needed.
-const { User } = require("../../models");
+const { User, Character, Health } = require("../../models");
 
 //get all users
+//example: http://localhost:3001/api/users
 router.get("/", (req, res) => {
   User.findAll({
     attributes: { exclude: ["password"] },
@@ -16,6 +17,7 @@ router.get("/", (req, res) => {
 });
 
 //get a specific user
+//example: http://localhost:3001/api/users/1
 router.get("/:id", (req, res) => {
   User.findOne({
     attributes: { exclude: ["password"] },
@@ -24,9 +26,12 @@ router.get("/:id", (req, res) => {
     },
     include: [
       {
-        //will include the other models that are associated w/ the user ie: character type and scores.
-        //model: 'model name here'
-        //attributes: ["keys from the associated model"]
+        model: Character,
+        attributes: ["id", "char_name", "char_type"],
+      },
+      {
+        model: Health,
+        attributes: ["id", "health"],
       },
     ],
   })
