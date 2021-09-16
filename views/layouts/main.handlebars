@@ -13,23 +13,10 @@
 <body>
     <header>
         <h1>Welcome to the LOTR-RPG Text Game!</h1>
-        <nav>
-
-            <nav>
-                {{!-- put log out button here along w/ dashboard route. --}}
-            </nav>
-
-            <div>
-                {{!-- point to the login route w/ the login button. --}}
-                <a href="/login" class="nav-item">Login Page</a>
-            </div>
-
-        </nav>
     </header>
     <main>
         {{{ body }}}
     </main>
-    {{!-- link the page to the logout js file but only if they are logged in. --}}
     {{#if loggedIn}}
     <script src="/javascript/logout.js"></script>
     {{/if}}
