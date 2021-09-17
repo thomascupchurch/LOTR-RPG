@@ -1,11 +1,11 @@
 const router = require("express").Router();
 
 //will add the rest of the models here as needed.
-const { Scores } = require("../../models");
+const { Health } = require("../../models");
 
 //get all users
 router.get("/", (req, res) => {
-  Scores.findAll({
+  Health.findAll({
     attributes: { id, score, user_id }
   })
     .then((dbScoreData) => res.json(dbScoreData))
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 
 //get a specific user
 router.get("/:user_id", (req, res) => {
-  Scores.findOne({
+  Health.findOne({
     attributes: { score },
     where: {
       user_id: req.params.user_id,
@@ -28,12 +28,12 @@ router.get("/:user_id", (req, res) => {
       },
     ],
   })
-    .then((dbScoresData) => {
-      if (!dbScoresData) {
+    .then((dbHealthData) => {
+      if (!dbHealthData) {
         res.status(404).json({ message: "No User Found with this user id" });
         return;
       }
-      res.json(dbScoresData);
+      res.json(dbHealthData);
     })
     .catch((err) => {
       console.log(err);
@@ -44,13 +44,13 @@ router.get("/:user_id", (req, res) => {
 //create a score for the first time 
 router.post("/", (req, res) => {
   // expects {username: 'jsmith', password: 'password1234'}
-  Scores.create({
+  Health.create({
     score: req.body.score
   })
-    .then((dbScoresData) => {
+    .then((dbHealthData) => {
       req.session.save(() => {
-        req.session.user_id = dbScoresData.user_id;
-        req.session.username = dbScoresData.username;
+        req.session.user_id = dbHealthData.user_id;
+        req.session.username = dbHealthData.username;
         req.session.loggedIn = true;
         res.json(dbUserData);
       });
@@ -63,15 +63,15 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
     // expects {username: 'jsmith', password: 'password1234'}
-    Scores.update({
-      score: req.body.score
+    Health.update({
+      health: req.body.health
     })
-      .then((dbScoresData) => {
+      .then((dbHealthData) => {
         req.session.save(() => {
-          req.session.user_id = dbScoresData.user_id;
-          req.session.username = dbScoresData.username;
+          req.session.user_id = dbHealthData.user_id;
+          req.session.username = dbHealthData.username;
           req.session.loggedIn = true;
-          res.json(dbScoresData);
+          res.json(dbHealthData);
         });
       })
       .catch((err) => {
