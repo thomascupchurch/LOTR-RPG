@@ -1,1 +1,23 @@
-This is the create Character page!!
+<h2>Create your Character!</h2>
+
+<form action="/action_page.php">
+    <label for="fname">Name your character!</label><br>
+    <input type="text" id="name" name="name"><br><br>
+
+    <label for="char-type">Choose your character:</label>
+
+    <select id="char-type" name="char-type">
+        <option value="Hobbit">Hobbit</option>
+        <option value="Human">Human</option>
+        <option value="Wizard">Wizard</option>
+        <option value="Elf">Elf</option>
+        <option value="Dwarf">Dwarf</option>
+    </select>
+
+    <button type="submit" class="btn">
+        Create Character
+    </button>
+</form>
+
+
+<script src="/controllers/api/character-routes.js"></script>
