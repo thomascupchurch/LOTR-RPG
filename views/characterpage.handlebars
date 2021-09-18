@@ -3,10 +3,12 @@
 <h2>Create your Character!</h2>
 
 
-<form class="create-char-form">
-    <label for="name">Name your character!</label><br>
-    <input type="text" id="name" name="charName"><br><br>
-
+<form id="character-form" class="create-char-form grid-x align-center">
+    <div class="cell">
+        <label for="name">Name your character!</label><br>
+        <input type="text" id="name" name="charName"><br><br>
+    </div>
+    <div class="cell">
     <label for="char-type">Choose your character:</label>
 
     <select id="char-type" name="char-type">
@@ -17,9 +19,13 @@
         <option value="Dwarf">Dwarf</option>
     </select>
 
-    <button type="submit" class="btn-no-style">
+    </div>
+    <div class="cell">
+    <button type="submit" class="btn">
+
         Create Character
     </button>
+    </div>
 </form>
 
 

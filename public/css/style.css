@@ -14,14 +14,11 @@
 /* Attempting to add a new font */
 
 @font-face {
-    font-family: 'Aniron';
-    src: url('../../assets/fonts/anironregular.ttf') format('truetype');
+    font-family: Aniron, fantasy;
+    src: url('../../assets/fonts/anirb___.ttf');
+    src: url('../../assets/fonts/anirm___.ttf');
     font-weight: normal;
     font-style: normal;
-}
-
-#newfont {
-    font-family: 'Aniron';
 }
 
 body {
@@ -48,8 +45,46 @@ header {
 }
 
 header h1 {
-    font-family: 'Aniron', serif;
+    font-family: 'Aniron', fantasy;
     color: var(--primary);
     font-weight: normal;
     font-size: 36px;
+    text-shadow: 3px 5px 5px rgba(160, 140, 106, 0.5);
+}
+
+h2 {
+    font-family: Aniron, fantasy;
+    color: var(--textcolor);
+    font-size: 23px;
+}
+
+.btn {
+    background-color: var(--secondary);
+    color: var(--textcolor);
+    text-decoration: none;
+    border-radius: 25px;
+    padding: 15px;
+    margin: 5px;
+    font-size: 13px;
+    opacity: 100%;
+}
+
+.btn:hover {
+    opacity: 70%;
+    transition-duration: 2s;
+}
+
+#character-form {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--primary);
+    background-image: url('../../assets/backgrounds/bg2.png');
+    background-position: center;
+    background-size: cover;
+    color: var(--textcolor);
+    font-size: 14px;
+}
+
+#char-type {
+    text-decoration: none;
 }
