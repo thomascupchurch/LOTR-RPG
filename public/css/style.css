@@ -15,8 +15,8 @@
 
 @font-face {
     font-family: Aniron, fantasy;
-    src: url('../../assets/fonts/anirb___.ttf');
-    src: url('../../assets/fonts/anirm___.ttf');
+    src: url('/assets/fonts/anirb___.ttf');
+    src: url('/assets/fonts/anirm___.ttf');
     font-weight: normal;
     font-style: normal;
 }
@@ -25,7 +25,7 @@ body {
     background-color: var(--primary);
     margin: 0;
     padding: 0;
-    background-image: url('../../assets/backgrounds/bg2.png');
+    background-image: url('/assets/backgrounds/bg2.png');
     background-size: cover;
     background-position: center;
     font-family: Trattatelo, fantasy;
@@ -36,7 +36,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     background-color: var(--textcolor);
-    background-image: url('../../assets/pics/canal_at_night.jpg');
+    background-image: url('/assets/pics/canal_at_night.jpg');
     background-size: cover;
     background-position: center;
     padding: 0 10px 10px 0;
@@ -78,7 +78,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     background-color: var(--primary);
-    background-image: url('../../assets/backgrounds/bg2.png');
+    background-image: url('/assets/backgrounds/bg2.png');
     background-position: center;
     background-size: cover;
     color: var(--textcolor);

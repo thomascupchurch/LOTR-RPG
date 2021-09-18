@@ -1,13 +1,15 @@
+// const { Character } = require("../../models");
+
 const textElement = document.getElementById("question-text");
 const optionButtonsElement = document.getElementById("options");
-const sequelize = require("../../config/connection");
+// const char_name = document.querySelector('input[name="charName"]').value;
+// const char_type = document.querySelector('select[name="char-type"]').value;
 
+let damage;
 let state = {};
-let currentPlayerHealth = 20;
-let blueGoo = {};
 
 function startGame() {
-  state = {};
+  //   state = {};
   showTextNode(1);
 }
 
@@ -22,11 +24,30 @@ function showTextNode(textNodeIndex) {
     if (showOption(option)) {
       const button = document.createElement("button");
       button.innerText = option.text;
-      button.classList.add("btn-no-style");
+      button.classList.add("btn");
       button.addEventListener("click", () => selectOption(option));
       optionButtonsElement.appendChild(button);
     }
   });
+}
+
+function deductHealth() {
+  //   event.preventDefault();
+  console.log("deduct health has been called");
+  const response = fetch(`/api/characters/5`, {
+    method: "PUT",
+    body: char_health,
+
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  console.log(response);
+  if (response.ok) {
+    char_health--;
+  } else {
+    alert(response.statusText);
+  }
 }
 
 function showOption(option) {
@@ -39,21 +60,23 @@ function selectOption(option) {
   if (nextTextNodeId <= 0) {
     return startGame();
   }
-  state = Object.assign(state, option.setState);
+  //   state = Object.assign(state, option.setState);
+  if (option.damage) {
+    deductHealth();
+  }
   showTextNode(nextTextNodeId);
 }
 
-function deductHealth() {
-  currentPlayerHealth = currentPlayerHealth - 1;
-  console.log(currentPlayerHealth);
-  //need to write code to push the currentPlayerhealth to the "posthealth function"
-}
+// function deductHealth() {
+//   currentPlayerHealth = currentPlayerHealth - 1;
+//   console.log(currentPlayerHealth);
+//   //need to write code to push the currentPlayerhealth to the "posthealth function"
+// }
 
-function posthealth() {
-  //need to write code to push the health value to the health column of the health model.
-  //need to figure out how to match it w/ the user_id.
-}
-deductHealth();
+// function posthealth() {
+//   //need to write code to push the health value to the health column of the health model.
+//   //need to figure out how to match it w/ the user_id.
+// }
 
 //write function to increase or decrease their health based on the option they chose.
 
@@ -64,7 +87,7 @@ const textNodes = [
     options: [
       {
         text: "Try it on.  Magic rings do something, right?",
-        setState: { blueGoo: true },
+        // setState: { blueGoo: true },
         damage: true,
         nextText: 2,
       },
@@ -81,14 +104,14 @@ const textNodes = [
     options: [
       {
         text: "Trade the goo for a sword",
-        requiredState: (currentState) => currentState.blueGoo,
-        setState: { blueGoo: false, sword: true },
+        // requiredState: (currentState) => currentState.blueGoo,
+        // setState: { blueGoo: false, sword: true },
         nextText: 3,
       },
       {
         text: "Trade the goo for a shield",
-        requiredState: (currentState) => currentState.blueGoo,
-        setState: { blueGoo: false, shield: true },
+        // // requiredState: (currentState) => currentState.blueGoo,
+        // // setState: { blueGoo: false, shield: true },
         nextText: 3,
       },
       {
@@ -155,17 +178,17 @@ const textNodes = [
       },
       {
         text: "Attack it with your sword",
-        requiredState: (currentState) => currentState.sword,
+        // requiredState: (currentState) => currentState.sword,
         nextText: 9,
       },
       {
         text: "Hide behind your shield",
-        requiredState: (currentState) => currentState.shield,
+        // // requiredState: (currentState) => currentState.shield,
         nextText: 10,
       },
       {
         text: "Throw the blue goo at it",
-        requiredState: (currentState) => currentState.blueGoo,
+        // requiredState: (currentState) => currentState.blueGoo,
         nextText: 11,
       },
     ],
