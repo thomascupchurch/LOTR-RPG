@@ -31,7 +31,8 @@ function deductHealth() {
   console.log("deduct health has been called");
   let updatedHealth = (health -= 1);
   console.log(updatedHealth);
-
+  // STUCK HERE.  1) How do we know which character id to update.  2) get char_health undefined because we can't
+  //import sequelize for our tables.
   //   const response = fetch(`/api/characters/1`, {
   //     method: "PUT",
   //     body: JSON.stringify({
