@@ -15,16 +15,14 @@ async function loginFormHandler(event) {
     });
 
     if (response.ok) {
-      document.location.replace("/dashboard/");
+      document.location.replace("/character/");
     } else {
-      alert(response.statusText);
+      alert("There was an issue with your login, please try again.");
       //Add to add the "await" to capture the response properly.
       const data = await response.json();
       console.log(data);
     }
   }
-
-  console.log("Do you see me? 1");
 }
 
 async function signupFormHandler(event) {
@@ -44,27 +42,17 @@ async function signupFormHandler(event) {
     });
 
     if (response.ok) {
-      document.location.replace("/dashboard/");
+      document.location.replace("/character/");
     } else {
-      alert(response.statusText);
+      alert("oops looks like there was a problem, please try again.");
     }
   }
-
-  console.log("Do you see me? 2");
 }
 
 document
   .querySelector(".login-form")
-  .addEventListener(
-    "submit",
-    loginFormHandler,
-    console.log("you clicked the login button")
-  );
+  .addEventListener("submit", loginFormHandler);
 
 document
   .querySelector(".signup-form")
-  .addEventListener(
-    "submit",
-    signupFormHandler,
-    console.log("you clicked the sign up button.")
-  );
+  .addEventListener("submit", signupFormHandler);

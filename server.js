@@ -7,6 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const sequelize = require("./config/connection");
+//using Sequilize to store the session.
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const sess = {
@@ -31,6 +32,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(require("./controllers/"));
+
+/*  PASSPORT SETUP  */
+
+// const passport = require("passport");
+
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
