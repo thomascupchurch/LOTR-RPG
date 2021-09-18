@@ -15,8 +15,8 @@
 
 @font-face {
     font-family: Aniron, fantasy;
-    src: url('../../assets/fonts/anirb___.ttf');
-    src: url('../../assets/fonts/anirm___.ttf');
+    src: url('../assets/fonts/anirb___.ttf');
+    src: url('../assets/fonts/anirm___.ttf');
     font-weight: normal;
     font-style: normal;
 }
@@ -25,7 +25,7 @@ body {
     background-color: var(--primary);
     margin: 0;
     padding: 0;
-    background-image: url('../../assets/backgrounds/bg2.png');
+    background-image: url('/assets/backgrounds/bg2.png');
     background-size: cover;
     background-position: center;
     font-family: Trattatelo, fantasy;
@@ -45,7 +45,7 @@ header {
 }
 
 header h1 {
-    font-family: 'Aniron', fantasy;
+    font-family: Aniron, fantasy;
     color: var(--primary);
     font-weight: normal;
     font-size: 36px;
