@@ -33,13 +33,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(require("./controllers/"));
 
-/*  PASSPORT SETUP  */
-
-// const passport = require("passport");
-
-// app.use(passport.initialize());
-// app.use(passport.session());
-
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
 });
