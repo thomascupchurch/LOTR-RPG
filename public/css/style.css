@@ -14,14 +14,11 @@
 /* Attempting to add a new font */
 
 @font-face {
-    font-family: 'Aniron';
-    src: url('../../assets/fonts/anironregular.ttf') format('truetype');
+    font-family: Aniron, fantasy;
+    src: url('../../assets/fonts/anirb___.ttf');
+    src: url('../../assets/fonts/anirm___.ttf');
     font-weight: normal;
     font-style: normal;
-}
-
-#newfont {
-    font-family: 'Aniron';
 }
 
 body {
@@ -48,55 +45,46 @@ header {
 }
 
 header h1 {
-    font-family: 'Aniron', serif;
+    font-family: 'Aniron', fantasy;
     color: var(--primary);
     font-weight: normal;
     font-size: 36px;
+    text-shadow: 3px 5px 5px rgba(160, 140, 106, 0.5);
 }
 
-    /*
-*, *::before, *::after {
-    box-sizing: border-box;
-    font-family: fantasy;
-}
-
-body {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: #333;
-}
-
-.container {
-    width: 800px;
-    max-width: 80%;
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px 2px;
-}
-
-.btn-grid {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 10px;
-    margin-top: 20px;
+h2 {
+    font-family: Aniron, fantasy;
+    color: var(--textcolor);
+    font-size: 23px;
 }
 
 .btn {
-    background-color: hs1(200, 100%, 50%);
-    border: 1px solid hs1(200, 100%, 30%);
-    border-radius: 5px;
-    padding: 5px 10px;
-    color: white;
-    outline: none;
+    background-color: var(--secondary);
+    color: var(--textcolor);
+    text-decoration: none;
+    border-radius: 25px;
+    padding: 15px;
+    margin: 5px;
+    font-size: 13px;
+    opacity: 100%;
 }
 
 .btn:hover {
-    border-color: black;
+    opacity: 70%;
+    transition-duration: 2s;
 }
 
-*/
+#character-form {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--primary);
+    background-image: url('../../assets/backgrounds/bg2.png');
+    background-position: center;
+    background-size: cover;
+    color: var(--textcolor);
+    font-size: 14px;
+}
+
+#char-type {
+    text-decoration: none;
+}
