@@ -1,127 +1,215 @@
-const inquirer = require('inquirer');
-const { Character, User, Scores } = require("../../models/index");
+const textElement = document.getElementById("question-text");
+const optionButtonsElement = document.getElementById("options");
+const sequelize = require("../../config/connection");
 
+let state = {};
+let currentPlayerHealth = 20;
+let blueGoo = {};
 
-
-
-function Game() {
-    this.roundNumber = 0;
-    this.isPlayerTurn = false;
-    this.enemies = [];
-    this.currentEnemy;
-    this.player;
+function startGame() {
+  state = {};
+  showTextNode(1);
 }
 
-Game.prototype.initializeGame = function() {
-    this.enemies.push(new Enemy('goblin', 'sword'));
-    this.enemies.push(new Enemy('orc', 'baseball bat'));
-    this.enemies.push(new Enemy('skeleton', 'axe'));
+function showTextNode(textNodeIndex) {
+  const textNode = textNodes.find((textNode) => textNode.id === textNodeIndex);
+  textElement.innerText = textNode.text;
+  while (optionButtonsElement.firstChild) {
+    optionButtonsElement.removeChild(optionButtonsElement.firstChild);
+  }
 
-    this.currentEnemy = this.enemies[0];
-
-    inquirer
-        .prompt({
-            type: 'text',
-            name: 'name',
-            message: 'What is your character\'s name?'
-        })
-        // destructure name from the prompt object
-        .then(({ name }) => {
-            this.User = new User(name);
-
-            // test the object creation
-            this.startNewBattle();
-        });
-};
-
-Game.prototype.startNewBattle = function() {
-    if (this.player.agility > this.currentEnemy.agility) {
-        this.isPlayerTurn = true;
-    } else {
-        this.isPlayerTurn = false;
+  textNode.options.forEach((option) => {
+    if (showOption(option)) {
+      const button = document.createElement("button");
+      button.innerText = option.text;
+      button.classList.add("btn-no-style");
+      button.addEventListener("click", () => selectOption(option));
+      optionButtonsElement.appendChild(button);
     }
-    console.log('Your stats are as follows:');
-    console.table(this.player.getStats());
-    console.log(this.currentEnemy.getDescription());
+  });
+}
 
-    this.battle();
-};
+function showOption(option) {
+  return option.requiredState == null || option.requiredState(state);
+}
 
-Game.prototype.battle = function() {
-    if (this.isPlayerTurn) {
-        inquirer
-            .prompt({
-                type: 'list',
-                message: 'What would you like to do?',
-                name: 'action',
-                choices: ['Attack', 'Use potion']
-            })
-            .then(({ action }) => {
-                if (action === 'Use potion') {
-                if (!this.player.getInventory()) {
-                    console.log("You don't have any potions!");
-                    return this.checkEndOfBattle();;
-                }
+function selectOption(option) {
+  console.log(option);
+  const nextTextNodeId = option.nextText;
+  if (nextTextNodeId <= 0) {
+    return startGame();
+  }
+  state = Object.assign(state, option.setState);
+  showTextNode(nextTextNodeId);
+}
 
-                inquirer
-                    .prompt({
-                        type: 'list',
-                        message: 'Which potion would you like to use?',
-                        name: 'action',
-                        choices: this.player.getInventory().map((item, index) => `${index + 1}: ${item.name}`)
-                    })
-                    .then(({ action }) => {
-                        const potionDetails = action.split(': ');
+function deductHealth() {
+  currentPlayerHealth = currentPlayerHealth - 1;
+  console.log(currentPlayerHealth);
+  //need to write code to push the currentPlayerhealth to the "posthealth function"
+}
 
-                        this.player.usePotion(potionDetails[0] - 1);
-                        console.log(`You used a ${potionDetails[1]} potion.`);
+function posthealth() {
+  //need to write code to push the health value to the health column of the health model.
+  //need to figure out how to match it w/ the user_id.
+}
+deductHealth();
 
-                        this.checkEndOfBattle();
-                    });
-            } else {
-                const damage = this.player.getAttackValue();
-                this.currentEnemy.reduceHealth(damage);
+//write function to increase or decrease their health based on the option they chose.
 
-                console.log(`You attacked the ${this.currentEnemy.name}`);
-                console.log(this.currentEnemy.getHealth());
+const textNodes = [
+  {
+    id: 1,
+    text: "Your relative has just left you his magic ring.  It may not be what it appears to be.  You:",
+    options: [
+      {
+        text: "Try it on.  Magic rings do something, right?",
+        setState: { blueGoo: true },
+        damage: true,
+        nextText: 2,
+      },
 
-                this.checkEndOfBattle();
-            }
-            });
-        
-    } else {
-        const damage = this.currentEnemy.getAttackValue();
-        this.player.reduceHealth(damage);
+      {
+        text: "Put it away for later, there’s something about it you don’t like.",
+        nextText: 2,
+      },
+    ],
+  },
+  {
+    id: 2,
+    text: "You venture forth in search of answers to where you are when you come across a merchant.",
+    options: [
+      {
+        text: "Trade the goo for a sword",
+        requiredState: (currentState) => currentState.blueGoo,
+        setState: { blueGoo: false, sword: true },
+        nextText: 3,
+      },
+      {
+        text: "Trade the goo for a shield",
+        requiredState: (currentState) => currentState.blueGoo,
+        setState: { blueGoo: false, shield: true },
+        nextText: 3,
+      },
+      {
+        text: "Ignore the merchant",
+        nextText: 3,
+      },
+    ],
+  },
+  {
+    id: 3,
+    text: "After leaving the merchant you start to feel tired and stumble upon a small town next to a dangerous looking castle.",
+    options: [
+      {
+        text: "Explore the castle",
+        nextText: 4,
+      },
+      {
+        text: "Find a room to sleep at in the town",
+        nextText: 5,
+      },
+      {
+        text: "Find some hay in a stable to sleep in",
+        nextText: 6,
+      },
+    ],
+  },
+  {
+    id: 4,
+    text: "You are so tired that you fall asleep while exploring the castle and are killed by some terrible monster in your sleep.",
+    options: [
+      {
+        text: "Restart",
+        nextText: -1,
+      },
+    ],
+  },
+  {
+    id: 5,
+    text: "Without any money to buy a room you break into the nearest inn and fall asleep. After a few hours of sleep the owner of the inn finds you and has the town guard lock you in a cell.",
+    options: [
+      {
+        text: "Restart",
+        nextText: -1,
+      },
+    ],
+  },
+  {
+    id: 6,
+    text: "You wake up well rested and full of energy ready to explore the nearby castle.",
+    options: [
+      {
+        text: "Explore the castle",
+        nextText: 7,
+      },
+    ],
+  },
+  {
+    id: 7,
+    text: "While exploring the castle you come across a horrible monster in your path.",
+    options: [
+      {
+        text: "Try to run",
+        nextText: 8,
+      },
+      {
+        text: "Attack it with your sword",
+        requiredState: (currentState) => currentState.sword,
+        nextText: 9,
+      },
+      {
+        text: "Hide behind your shield",
+        requiredState: (currentState) => currentState.shield,
+        nextText: 10,
+      },
+      {
+        text: "Throw the blue goo at it",
+        requiredState: (currentState) => currentState.blueGoo,
+        nextText: 11,
+      },
+    ],
+  },
+  {
+    id: 8,
+    text: "Your attempts to run are in vain and the monster easily catches.",
+    options: [
+      {
+        text: "Restart",
+        nextText: -1,
+      },
+    ],
+  },
+  {
+    id: 9,
+    text: "You foolishly thought this monster could be slain with a single sword.",
+    options: [
+      {
+        text: "Restart",
+        nextText: -1,
+      },
+    ],
+  },
+  {
+    id: 10,
+    text: "The monster laughed as you hid behind your shield and ate you.",
+    options: [
+      {
+        text: "Restart",
+        nextText: -1,
+      },
+    ],
+  },
+  {
+    id: 11,
+    text: "You threw your jar of goo at the monster and it exploded. After the dust settled you saw the monster was destroyed. Seeing your victory you decide to claim this castle as your and live out the rest of your days there.",
+    options: [
+      {
+        text: "Congratulations. Play Again.",
+        nextText: -1,
+      },
+    ],
+  },
+];
 
-        console.log(`You were attacked by the ${this.currentEnemy.name}`);
-        console.log(this.player.getHealth());
-
-        this.checkEndOfBattle();
-    }
-};
-
-Game.prototype.checkEndOfBattle = function() {
-    if (this.player.isAlive() && this.currentEnemy.isAlive()) {
-        this.isPlayerTurn = !this.isPlayerTurn;
-        this.battle();
-    } else if (this.player.isAlive() && !this.currentEnemy.isAlive()) {
-        console.log(`You've defeated the ${this.currentEnemy.name}`);
-
-        this.player.addPotion(this.currentEnemy.potion);
-        console.log(`${this.player.name} found a ${this.currentEnemy.potion.name} potion`);
-
-        this.roundNumber++;
-
-        if (this.roundNumber < this.enemies.length) {
-            this.currentEnemy = this.enemies[this.roundNumber];
-            this.startNewBattle();
-        } else {
-            console.log('You win!');
-        } 
-    } else {
-        console.log("You've been defeated!");
-    }
-};
-
-
-module.exports = Game;
+startGame();

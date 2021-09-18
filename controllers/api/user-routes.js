@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 //will add the rest of the models here as needed.
-const { User, Character, Health } = require("../../models");
+const { User, Character } = require("../../models");
 
 //get all users
 //example: http://localhost:3001/api/users
@@ -27,11 +27,7 @@ router.get("/:id", (req, res) => {
     include: [
       {
         model: Character,
-        attributes: ["id", "char_name", "char_type"],
-      },
-      {
-        model: Health,
-        attributes: ["id", "health"],
+        attributes: ["id", "char_name", "char_type", "char_health"],
       },
     ],
   })
