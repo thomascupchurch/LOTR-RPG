@@ -15,13 +15,8 @@
 
 @font-face {
     font-family: Aniron, fantasy;
-<<<<<<< HEAD
     src: url('/assets/fonts/anirb___.ttf');
     src: url('/assets/fonts/anirm___.ttf');
-=======
-    src: url('../assets/fonts/anirb___.ttf');
-    src: url('../assets/fonts/anirm___.ttf');
->>>>>>> 9b3fdef3eb430f10fb5abd6f02b58241ccb803c4
     font-weight: normal;
     font-style: normal;
 }
