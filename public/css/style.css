@@ -1,0 +1,55 @@
+/* boiler plate styles */
+:root {
+    --primary: #F5E2C8;
+    --secondary: #73683B;
+    --tertiary: #B0A084;
+    --quartiary: #583E23;
+    --textcolor: #13262F;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Attempting to add a new font */
+
+@font-face {
+    font-family: 'Aniron';
+    src: url('../../assets/fonts/anironregular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#newfont {
+    font-family: 'Aniron';
+}
+
+body {
+    background-color: var(--primary);
+    margin: 0;
+    padding: 0;
+    background-image: url('../../assets/backgrounds/bg2.png');
+    background-size: cover;
+    background-position: center;
+    font-family: Trattatelo, fantasy;
+    font-size: 16px;
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--textcolor);
+    background-image: url('../../assets/pics/canal_at_night.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 0 10px 10px 0;
+    margin: 0;
+    /* font-family: 'Aniron', serif; */
+}
+
+header h1 {
+    font-family: 'Aniron', serif;
+    color: var(--primary);
+    font-weight: normal;
+    font-size: 36px;
+}
