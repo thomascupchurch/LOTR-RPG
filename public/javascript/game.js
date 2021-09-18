@@ -1,20 +1,76 @@
 const inquirer = require('inquirer');
 const { Character, User, Scores } = require("../../models/index");
+const { beforeFindAfterOptions } = require('../../models/User');
 
 const textElement = document.getElementById('text');
 const optionButtonsElement = document.getElementById('option-buttons');
+
+let state = {};
 
 function startGame() {
 
 };
 
 function showTextNode(textNodeIndex) {
+    const textNode = textNodes.find(textNode => textNode.id === 
+        textNodeIndex);
+        textElement.innerText = textNode.text;
+        while (optionButtonsElement.firstChild) {
+            optionButtonsElement.removeChild(optionsButtonsElement.firstChild)
+        };
 
+    textNode.options.foreEach(option => {
+        if (showOption(option)) {
+            const button = document.createElement('button');
+            button.innerText = options.text;
+            button.classList.add('btn');
+            button.addEventListener('click', () => selectOption(option));
+            optionButtonsElement.appendChild(button);
+        }
+    })
 };
+
+function showOption(option) {
+
+}
 
 function selectOption(option) {
 
 };
+
+const textNodes = [
+    {
+        id: 1,
+        text: '',
+        options: [
+            { /* choice 1 */
+                text: '',
+                setState: { something: true },
+                nextText: 2
+            },
+            { /* choice 2 */
+                text: '',
+                nextText: 2
+            }
+        ]
+
+    },
+    {
+        id: 2,
+        text: '',
+        options: [
+            {
+                text: '',
+                setState: { something: true },
+                nextText: 3
+            },
+            {
+                text: '',
+                nextTex: 3
+            }
+        ]
+    }
+]
 
 startGame();
 
