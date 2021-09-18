@@ -16,8 +16,7 @@ async function newFormHandler(event) {
   });
 
   if (response.ok) {
-    // document.location.replace("/game");
-    window.alert("Character created!");
+    document.location.replace("/game");
   } else {
     alert(response.statusText);
   }
