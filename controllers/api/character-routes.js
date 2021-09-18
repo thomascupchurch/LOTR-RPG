@@ -13,6 +13,52 @@ router.get("/", (req, res) => {
     });
 });
 
+//get single character
+//example: http://localhost:3001/api/characters/1
+router.get("/:id", (req, res) => {
+  Character.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ["id", "char_name", "char_type", "char_health"],
+    include: [
+      {
+        model: User,
+        attributes: ["id", "username"],
+      },
+    ],
+  })
+    .then((dbCharacterData) => res.json(dbCharacterData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.put("/:id", (req, res) => {
+  Character.update(
+    {
+      char_health: req.body.char_health,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+    .then((dbCharData) => {
+      if (!dbCharData) {
+        res.status(404).json({ message: "No Character found with this id" });
+        return;
+      }
+      res.json(dbCharData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 //create character route.
 router.post("/", withAuth, (req, res) => {
   // expects {char_name: "Frodo", char_type: "Hobbit", user_id: 1 }
