@@ -30,7 +30,12 @@ function showTextNode(textNodeIndex) {
 function deductHealth() {
   console.log("deduct health has been called");
   let updatedHealth = (health -= 1);
-  console.log(updatedHealth);
+  //   const scoreDiv = document.createElement("div");
+  //   let scoreDisplay = document.createTextNode("Your score is: " + updatedHealth);
+  //   scoreDiv.appendChild(scoreDisplay);
+  //   const currentDiv = document.getElementById("scoreDisplay");
+  //   document.body.insertBefore(scoreDiv, currentDiv);
+
   // STUCK HERE.  1) How do we know which character id to update.  2) get char_health undefined because we can't
   //import sequelize for our tables.
   //   const response = fetch(`/api/characters/1`, {

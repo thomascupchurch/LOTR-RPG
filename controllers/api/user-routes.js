@@ -57,6 +57,7 @@ router.post("/", (req, res) => {
         req.session.username = dbUserData.username;
         req.session.loggedIn = true;
         res.json(dbUserData);
+        console.log(dbUserData.id);
       });
     })
     .catch((err) => {
@@ -90,10 +91,31 @@ router.post("/login", (req, res) => {
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
-
+      console.log(dbUserData.id);
       res.json({ user: dbUserData, message: "You are now logged in!" });
     });
   });
+});
+
+// PUT route:
+//example: http://localhost:3001/api/users/1
+router.put("/:id", (req, res) => {
+  User.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbUserData) => {
+      if (!dbUserData[0]) {
+        res.status(404).json({ message: "No user found with this id" });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 //Logout route.
