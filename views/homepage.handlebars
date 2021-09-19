@@ -1,32 +1,40 @@
 {{!-- login form --}}
 
 <form class="login-form">
-    <div>
+    <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+    <div class="small-4 cell">
         <label for="user-login">Username:</label>
-        <input type="text" id="user-login" />
+        <input class="input-field" type="text" id="user-login" />
     </div>
-    <div>
+    <div class="small-4 cell">
         <label for="password-login">Password:</label>
-        <input type="password" id="password-login" />
+        <input class="input-field" type="password" id="password-login" />
     </div>
     <div>
-        <button type="submit">LOGIN</button>
+        <button type="submit" class="btn">LOGIN</button>
+    </div>
+    </div>
     </div>
 </form>
 
 {{!-- Sign Up Form. --}}
 
-<form class="signup-form">
-    <div>
+<form class="signup-form align-center">
+    <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+    <div class="small-4 cell">
         <label for="username-signup">Username:</label>
-        <input type="text" id="username-signup" />
+        <input class="input-field" type="text" id="username-signup" />
     </div>
-    <div>
+    <div class="small-4 cell">
         <label for="password-signup">Password:</label>
-        <input type="password" id="password-signup" />
+        <input class="input-field" type="password" id="password-signup" />
     </div>
     <div>
-        <button type="submit">SIGN UP</button>
+        <button type="submit" class="btn">SIGN UP</button>
+    </div>
+    </div>
     </div>
 </form>
 
