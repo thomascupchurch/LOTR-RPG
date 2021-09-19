@@ -21,8 +21,6 @@ Character.init(
     },
     char_health: {
       type: DataTypes.INTEGER,
-      defaultValue: 20,
-      allowNull: false,
     },
     user_id: {
       type: DataTypes.INTEGER,
