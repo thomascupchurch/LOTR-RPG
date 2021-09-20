@@ -3,10 +3,11 @@ const optionButtonsElement = document.getElementById("options");
 
 
 let state = {};
-let health = 20;
+let js_char_health = 20;
 
 function startGame() {
   //   state = {};
+
   showTextNode(1);
 }
 
@@ -28,30 +29,57 @@ function showTextNode(textNodeIndex) {
   });
 }
 
+function updateHealth() {
+    console.log('updateHealth() has been called!');
+    [sequelize.literal(`
+        UPDATE char_health FROM characters
+        SET char_health = ${js_char_health}
+        WHERE user_id = user.id;
+        `), 'char_health']
+}
 
 function deductHealth() {
   console.log("deduct health has been called");
-  let updatedHealth = health--;
-  console.log(updatedHealth);
+  js_char_health --;
+  console.log(js_char_health);
 
+//     experimenting with this template:
+//     UPDATE table_name
+//     SET column1 = value1, column2 = value2
+//     WHERE some_column = some_value;
+
+
+//   UPDATE characters
+//   SET char_health = this.char_health
+//   WHERE user_id = user.id;
+
+[sequelize.literal(`
+        UPDATE char_health FROM characters
+        SET char_health = ${js_char_health}
+        WHERE user_id = user.id;
+        `), 'char_health']
+
+    
   // STUCK HERE.  1) How do we know which character id to update.  2) get char_health undefined because we can't
   //import sequelize for our tables.
-  //   const response = fetch(`/api/characters/1`, {
-  //     method: "PUT",
-  //     body: JSON.stringify({
-  //       char_health,
-  //     }),
-
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   console.log(response);
-  //   if (response.ok) {
-  //     console.log("Health Updated!");
-  //   } else {
-  //     alert(response.statusText);
-  //   }
+    const response = fetch(`/api/characters/`, {
+      method: "PUT",
+    //   where : Character.user_id = user.id,
+      body: JSON.stringify({
+        char_health,
+        
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    updateHealth();
+    console.log(response);
+    if (response.ok) {
+      console.log("Health Updated!");
+    } else {
+      alert(response.statusText);
+    }
 }
 
 function showOption(option) {
