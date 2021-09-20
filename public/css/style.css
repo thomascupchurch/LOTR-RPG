@@ -28,7 +28,7 @@ body {
     background-image: url('/assets/backgrounds/bg2.png');
     background-size: cover;
     background-position: center;
-    font-family: Trattatelo, fantasy;
+    font-family: cursive;
     font-size: 16px;
 }
 
@@ -39,7 +39,7 @@ header {
     background-image: url('/assets/pics/canal_at_night.jpg');
     background-size: cover;
     background-position: center;
-    padding: 0 10px 10px 0;
+    padding: 0 20px 20px 0;
     margin: 0;
     /* font-family: 'Aniron', serif; */
 }
@@ -62,7 +62,7 @@ h2 {
     background-color: var(--secondary);
     color: var(--textcolor);
     text-decoration: none;
-    border-radius: 25px;
+    border-radius: 15px;
     padding: 15px;
     margin: 5px;
     font-size: 13px;

@@ -1,13 +1,16 @@
-<button id="logout" class="btn-no-style">logout</button>
+<button id="logout" class="btn">logout</button>
 
 <h2>Create your Character!</h2>
 
 
-<form id="character-form" class="create-char-form grid-x align-center">
-    <div class="cell">
+<form id="character-form" class="create-char-form align-center">
+    <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+    <div class="medium-6 cell">
         <label for="name">Name your character!</label><br>
-        <input type="text" id="name" name="charName"><br><br>
+        <input class="input-field" type="text" id="name" name="charName"><br><br>
     </div>
+<<<<<<< HEAD
     <div class="cell">
         <label for="char-type">Choose your character:</label>
 
@@ -18,11 +21,25 @@
             <option value="Elf">Elf</option>
             <option value="Dwarf">Dwarf</option>
         </select>
+=======
+    <div class="medium-6 cell">
+    <label for="char-type">Choose your character:</label>
+
+    <select id="char-type" name="char-type">
+        <option value="Hobbit">Hobbit</option>
+        <option value="Human">Human</option>
+        <option value="Wizard">Wizard</option>
+        <option value="Elf">Elf</option>
+        <option value="Dwarf">Dwarf</option>
+    </select>
+>>>>>>> d1d6d780e9184bf0053a41fd62aeb16a028b42ba
     </div>
     <div class="cell">
         <button id="create-char-button" type="submit" class="btn">
             Create Character
         </button>
+    </div>
+    </div>
     </div>
 </form>
 
