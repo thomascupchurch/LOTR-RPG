@@ -1,127 +1,148 @@
-const inquirer = require('inquirer');
-const { Character, User, Scores } = require("../../models/index");
+const textElement = document.getElementById("question-text");
+const optionButtonsElement = document.getElementById("options");
 
+let state = {};
+let health = 20;
 
-
-
-function Game() {
-    this.roundNumber = 0;
-    this.isPlayerTurn = false;
-    this.enemies = [];
-    this.currentEnemy;
-    this.player;
+function startGame() {
+  //   state = {};
+  showTextNode(1);
 }
 
-Game.prototype.initializeGame = function() {
-    this.enemies.push(new Enemy('goblin', 'sword'));
-    this.enemies.push(new Enemy('orc', 'baseball bat'));
-    this.enemies.push(new Enemy('skeleton', 'axe'));
+function showTextNode(textNodeIndex) {
+  const textNode = textNodes.find((textNode) => textNode.id === textNodeIndex);
+  textElement.innerText = textNode.text;
+  while (optionButtonsElement.firstChild) {
+    optionButtonsElement.removeChild(optionButtonsElement.firstChild);
+  }
 
-    this.currentEnemy = this.enemies[0];
-
-    inquirer
-        .prompt({
-            type: 'text',
-            name: 'name',
-            message: 'What is your character\'s name?'
-        })
-        // destructure name from the prompt object
-        .then(({ name }) => {
-            this.User = new User(name);
-
-            // test the object creation
-            this.startNewBattle();
-        });
-};
-
-Game.prototype.startNewBattle = function() {
-    if (this.player.agility > this.currentEnemy.agility) {
-        this.isPlayerTurn = true;
-    } else {
-        this.isPlayerTurn = false;
+  textNode.options.forEach((option) => {
+    if (showOption(option)) {
+      const button = document.createElement("button");
+      button.innerText = option.text;
+      button.classList.add("btn");
+      button.addEventListener("click", () => selectOption(option));
+      optionButtonsElement.appendChild(button);
     }
-    console.log('Your stats are as follows:');
-    console.table(this.player.getStats());
-    console.log(this.currentEnemy.getDescription());
+  });
+}
 
-    this.battle();
-};
+function deductHealth() {
+  console.log("deduct health has been called");
+  let updatedHealth = health--;
+  console.log(updatedHealth);
 
-Game.prototype.battle = function() {
-    if (this.isPlayerTurn) {
-        inquirer
-            .prompt({
-                type: 'list',
-                message: 'What would you like to do?',
-                name: 'action',
-                choices: ['Attack', 'Use potion']
-            })
-            .then(({ action }) => {
-                if (action === 'Use potion') {
-                if (!this.player.getInventory()) {
-                    console.log("You don't have any potions!");
-                    return this.checkEndOfBattle();;
-                }
+  // STUCK HERE.  1) How do we know which character id to update.  2) get char_health undefined because we can't
+  //import sequelize for our tables.
+  //   const response = fetch(`/api/characters/1`, {
+  //     method: "PUT",
+  //     body: JSON.stringify({
+  //       char_health,
+  //     }),
 
-                inquirer
-                    .prompt({
-                        type: 'list',
-                        message: 'Which potion would you like to use?',
-                        name: 'action',
-                        choices: this.player.getInventory().map((item, index) => `${index + 1}: ${item.name}`)
-                    })
-                    .then(({ action }) => {
-                        const potionDetails = action.split(': ');
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+  //   console.log(response);
+  //   if (response.ok) {
+  //     console.log("Health Updated!");
+  //   } else {
+  //     alert(response.statusText);
+  //   }
+}
 
-                        this.player.usePotion(potionDetails[0] - 1);
-                        console.log(`You used a ${potionDetails[1]} potion.`);
+function showOption(option) {
+  return option.requiredState == null || option.requiredState(state);
+}
 
-                        this.checkEndOfBattle();
-                    });
-            } else {
-                const damage = this.player.getAttackValue();
-                this.currentEnemy.reduceHealth(damage);
+function selectOption(option) {
+  console.log(option);
+  const nextTextNodeId = option.nextText;
+  if (nextTextNodeId <= 0) {
+    return startGame();
+  }
+  //   state = Object.assign(state, option.setState);
+  if (option.damage) {
+    deductHealth();
+  }
+  showTextNode(nextTextNodeId);
+}
 
-                console.log(`You attacked the ${this.currentEnemy.name}`);
-                console.log(this.currentEnemy.getHealth());
+//write function to increase or decrease their health based on the option they chose.
 
-                this.checkEndOfBattle();
-            }
-            });
-        
-    } else {
-        const damage = this.currentEnemy.getAttackValue();
-        this.player.reduceHealth(damage);
+const textNodes = [
+  {
+    id: 1,
+    text: "Your relative has just left you his magic ring.  It may not be what it appears to be.  You:",
+    options: [
+      {
+        text: "Try it on.  Magic rings do something, right?",
+        damage: true,
+        nextText: 2,
+      },
 
-        console.log(`You were attacked by the ${this.currentEnemy.name}`);
-        console.log(this.player.getHealth());
+      {
+        text: "Put it away for later, there’s something about it you don’t like.",
+        nextText: 2,
+      },
+    ],
+  },
+  {
+    id: 2,
+    text: "Your wizard friend Gandalf has just shown up and proven that your magic ring is the One Ring, an ancient artifact of doom that the Dark Lord Sauron needs to restore his full power.  He suggests you leave immediately to avoid the evil forces looking for you.  You:",
+    options: [
+      {
+        text: "Pack your bags and set out.",
+        nextText: 3,
+      },
+      {
+        text: "Stay put.  If I don’t put the ring on, they won’t notice me.",
+        damage: true,
+        nextText: 3,
+      },
+    ],
+  },
+  {
+    id: 3,
+    text: "You arrive at the town you are supposed to meet Gandalf in, but he isn’t there.  Instead, a rough-looking Man tells you Gandalf won’t be meeting you and to follow him to Rivendell.",
+    options: [
+      {
+        text: "No thanks, I’ll make my own way to Rivendell.",
+        damage: true,
+        nextText: 4,
+      },
+      {
+        text: "Nice to have you along, Mr. Strider.",
+        nextText: 4,
+      },
+    ],
+  },
+  {
+    id: 4,
+    text: "In Rivendell, it is decided the Ring must be destroyed.  You volunteer to undertake the perilous journey into the heart of Mordor in order to do this.  Saruman the White shows his true colors as a servant of Sauron and blocks the path you planned to take over the Misty Mountains.  Now you must find a way around.",
+    options: [
+      {
+        text: "Go through the Gap of Rohan, it will take you close to Saruman’s stronghold in Isengard, but you may be able to pass through unnoticed, and you can find help in Rohan.",
+        damage: true,
+        nextText: 11,
+      },
+      {
+        text: "Go through the kingdom of Moria.  The ancient Dwarven city has long been abandoned and houses unknown dangers, but it’s far from Saruman’s citadel.",
+        nextText: 11,
+      },
+    ],
+  },
+  {
+    id: 11,
+    text: "With a roar, the entire land of Mordor seems to collapse around you.  The last things you see before all goes black is the tower of Barad-dûr falling, the Eye of Sauron staring around wildly, and the distant forms of eagles flying towards where you and Sam are trapped on an outcropping.  When you awake, you are in Minas Tirith, Strider, now using his true name of Aragon, Gandalf, and the rest of your companions are waiting for you.  The evil plaguing the land has been vanquished once and for all and everyone is ready to celebrate in your honor.  You watch the coronation of Aragon as the rightful King of Gondor only for him to turn to you and bow as the savior of all the free peoples of Middle Earth.  You are rewarded by the elves with passage to the Undying Lands, but your legend lives on long after you leave Middle Earth.  You have come to the end of your journey, thanks for playing!",
+    options: [
+      {
+        text: "Congratulations. Play Again.",
+        nextText: -1,
+      },
+    ],
+  },
+];
 
-        this.checkEndOfBattle();
-    }
-};
-
-Game.prototype.checkEndOfBattle = function() {
-    if (this.player.isAlive() && this.currentEnemy.isAlive()) {
-        this.isPlayerTurn = !this.isPlayerTurn;
-        this.battle();
-    } else if (this.player.isAlive() && !this.currentEnemy.isAlive()) {
-        console.log(`You've defeated the ${this.currentEnemy.name}`);
-
-        this.player.addPotion(this.currentEnemy.potion);
-        console.log(`${this.player.name} found a ${this.currentEnemy.potion.name} potion`);
-
-        this.roundNumber++;
-
-        if (this.roundNumber < this.enemies.length) {
-            this.currentEnemy = this.enemies[this.roundNumber];
-            this.startNewBattle();
-        } else {
-            console.log('You win!');
-        } 
-    } else {
-        console.log("You've been defeated!");
-    }
-};
-
-
-module.exports = Game;
+startGame();

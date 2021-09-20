@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/thomascupchurch/LOTR-RPG#readme",
   "dependencies": {
+    "axios": "^0.21.4",
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.2",
     "dotenv": "^10.0.0",
@@ -29,7 +30,6 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.3.0",
     "passport-local": "^1.0.0",
-    "requirejs": "^2.3.6",
     "rpg-bars": "^1.1.0",
     "sequelize": "^6.6.5"
   }

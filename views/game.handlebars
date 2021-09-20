@@ -1,16 +1,25 @@
 This is the game page!!!
 
 <button id="logout" class="btn-no-style">logout</button>
-{{!--
-
+<div id="scoreDisplay"></div>
 
 <div>
-    {{ background }}
-    {{ currentProgress }}
-    {{ promptAndActionWindow }}
+    <p>We Need you {{character.char_name}} go with haste!</p>
 </div>
 
---}}
+
+<div class="container">
+    <div id="question-text">Question:</div>
+    <div class="btn-grid" id="options">Options:
+        <button class="btn">Option 1</button>
+        <button class="btn">Option 2</button>
+    </div>
+
+</div>
 
 <script src="/javascript/game.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+    integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/javascript/game-music.js"></script>
 <script src="/javascript/logout.js"></script>
