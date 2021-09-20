@@ -3,12 +3,10 @@ This is the game page!!!
 <button id="logout" class="btn-no-style">logout</button>
 <div id="scoreDisplay">
 
-    <div>
-        <p class="charname">We Need you {{ charname.character }} go with haste!</p>
-    </div>
+    
 
 <div>
-    <p>We Need you {{character.char_name}} go with haste!</p>
+    <p>We Need you, </p> <div style="background-color: white;">  {{> charname }} </div> <p>Go with haste!</p>
 </div>
 
 
@@ -27,3 +25,4 @@ This is the game page!!!
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/javascript/game-music.js"></script>
 <script src="/javascript/logout.js"></script>
+<script src="/javascript/get-character.js"></script>

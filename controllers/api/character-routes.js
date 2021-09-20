@@ -28,12 +28,18 @@ router.get("/:id", (req, res) => {
       },
     ],
   })
-    .then((dbCharacterData) => res.json(dbCharacterData))
+    .then((dbCharacterData) => {
+        if (!dbCharacterData) {
+            res.status(404).json({ message: "No Character found with this id" });
+            return;
+        }
+        res.json(dbCharacterData);
+    })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
-});
+    });
 
 router.put("/:id", (req, res) => {
   Character.update(
@@ -60,19 +66,23 @@ router.put("/:id", (req, res) => {
 });
 
 //create character route.
-router.post("/", withAuth, (req, res) => {
+router.post("/", /* withAuth,*/ (req, res) => {
   // expects {char_name: "Frodo", char_type: "Hobbit", user_id: 1 }
 
   Character.create({
     char_name: req.body.char_name,
     char_type: req.body.char_type,
-    user_id: req.session.user_id,
+    char_health: 20,
+    user_id: req.session.user_id
   })
     .then((dbCharacterData) => res.json(dbCharacterData))
+    
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
-    });
+    })
+    // .then(res.render('main', {data: char_name}))
+    // ;
 });
 
 module.exports = router;

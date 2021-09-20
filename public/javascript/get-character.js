@@ -4,11 +4,11 @@ async function getCharacter() {
 
 
     
-    // const char_id = window.location.toString().split('/')[
-    //     window.location.toString().split('/').length - 1
-    //   ];
-
-    const response = await fetch(`/api/character`, {
+    const char_id = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+      ];
+    
+    const response = await fetch(`/api/characters/${char_id}`, {
         method: 'GET',
         body: JSON.stringify({
             id,
@@ -23,10 +23,13 @@ async function getCharacter() {
     });
 
     if (response.ok) {
-        document.location.replace('/dashboard');
+        // document.location.replace('/dashboard');
+        res.render(charname);
+        document.createElement('div[name="char_name_div"]').setAttribute(text=char_name);
     } else {
         alert(response.statusText);
     }
-}
+};
 
-document.createElement('div[name="char_name_div"]').setAttribute(text=char_name);
+getCharacter();
+
