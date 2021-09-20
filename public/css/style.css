@@ -1,10 +1,11 @@
 /* boiler plate styles */
 :root {
     --primary: #F5E2C8;
-    --secondary: #73683B;
+    --secondary: hsl(48, 32%, 34%);
     --tertiary: #B0A084;
     --quartiary: #583E23;
     --textcolor: #13262F;
+    --lightsecondary: hsl(50, 16%, 78%);
 }
 
 * {
@@ -59,9 +60,10 @@ h2 {
 }
 
 .btn {
-    background-color: var(--secondary);
+    background-color: var(--lightsecondary);
     color: var(--textcolor);
     text-decoration: none;
+    border: #13262F solid;
     border-radius: 15px;
     padding: 15px;
     margin: 5px;

@@ -12,6 +12,7 @@ function startGame() {
 function showTextNode(textNodeIndex) {
   const textNode = textNodes.find((textNode) => textNode.id === textNodeIndex);
   textElement.innerText = textNode.text;
+  textElement.classList.add("fs-3");
   while (optionButtonsElement.firstChild) {
     optionButtonsElement.removeChild(optionButtonsElement.firstChild);
   }
@@ -20,7 +21,7 @@ function showTextNode(textNodeIndex) {
     if (showOption(option)) {
       const button = document.createElement("button");
       button.innerText = option.text;
-      button.classList.add("btn");
+      button.classList.add("btn", "fs-4");
       button.addEventListener("click", () => selectOption(option));
       optionButtonsElement.appendChild(button);
     }
@@ -52,6 +53,10 @@ function deductHealth() {
   //   }
 }
 
+function endgame() {
+  document.location.replace("/scores");
+}
+
 function showOption(option) {
   return option.requiredState == null || option.requiredState(state);
 }
@@ -59,12 +64,15 @@ function showOption(option) {
 function selectOption(option) {
   console.log(option);
   const nextTextNodeId = option.nextText;
-  if (nextTextNodeId <= 0) {
-    return startGame();
-  }
+  // if (nextTextNodeId <= 0) {
+  //   return startGame();
+  // }
   //   state = Object.assign(state, option.setState);
   if (option.damage) {
     deductHealth();
+  }
+  if (option.endgame) {
+    endgame();
   }
   showTextNode(nextTextNodeId);
 }
@@ -138,7 +146,8 @@ const textNodes = [
     text: "With a roar, the entire land of Mordor seems to collapse around you.  The last things you see before all goes black is the tower of Barad-dûr falling, the Eye of Sauron staring around wildly, and the distant forms of eagles flying towards where you and Sam are trapped on an outcropping.  When you awake, you are in Minas Tirith, Strider, now using his true name of Aragon, Gandalf, and the rest of your companions are waiting for you.  The evil plaguing the land has been vanquished once and for all and everyone is ready to celebrate in your honor.  You watch the coronation of Aragon as the rightful King of Gondor only for him to turn to you and bow as the savior of all the free peoples of Middle Earth.  You are rewarded by the elves with passage to the Undying Lands, but your legend lives on long after you leave Middle Earth.  You have come to the end of your journey, thanks for playing!",
     options: [
       {
-        text: "Congratulations. Play Again.",
+        text: "Congratulations. Let's Checkout your score!",
+        endgame: true,
         nextText: -1,
       },
     ],

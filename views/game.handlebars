@@ -1,11 +1,27 @@
-This is the game page!!!
+<div class="container">
 
-<button id="logout" class="btn-no-style">logout</button>
-<div id="scoreDisplay"></div>
-
-<div>
-    <p>We Need you {{character.char_name}} go with haste!</p>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <button id="logout" class="btn">LOG OUT</button>
+        </li>
+    </ul>
 </div>
+
+<figure class="text-center">
+    <blockquote class="blockquote ">
+        <p class="text-dark">“There’s some good in this world, ::Insert Current Character's Name Here::… and it’s
+            worth fighting for.”</p>
+    </blockquote>
+    <figcaption class="blockquote-footer text-dark">
+        Sam Gangee
+    </figcaption>
+</figure>
+
+<div id="scoreDisplay" class="container">
+    <p>Your current score is: {{updatedScore}}</p>
+</div>
+
+
 
 
 <div class="container">
