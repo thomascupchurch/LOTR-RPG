@@ -1,6 +1,7 @@
 const textElement = document.getElementById("question-text");
 const optionButtonsElement = document.getElementById("options");
 
+
 let state = {};
 let health = 20;
 
