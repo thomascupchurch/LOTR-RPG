@@ -27,6 +27,7 @@ function showTextNode(textNodeIndex) {
   });
 }
 
+
 function deductHealth() {
   console.log("deduct health has been called");
   let updatedHealth = health--;

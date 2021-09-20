@@ -17,11 +17,16 @@ async function newFormHandler(event) {
 
   if (response.ok) {
     document.location.replace("/game");
-  } else {
+    }
+   else {
     alert(response.statusText);
   }
-}
+  
+};
 
 document
   .querySelector(".create-char-form")
-  .addEventListener("submit", newFormHandler);
+  .addEventListener("submit", newFormHandler)
+  
+
+  
