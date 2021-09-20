@@ -13,7 +13,8 @@ Character.init(
     },
     char_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      primaryKey: true,
+      allowNull: false
     },
     char_type: {
       type: DataTypes.STRING, //Would need to implement some type of "choice option we can use here?"
@@ -32,7 +33,7 @@ Character.init(
   },
   {
     sequelize,
-    freezeTableName: true,
+    freezeTableName: false,
     timestamps: true,
     underscored: true,
     modelName: "character",
