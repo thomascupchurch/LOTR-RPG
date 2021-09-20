@@ -29,13 +29,8 @@ function showTextNode(textNodeIndex) {
 
 function deductHealth() {
   console.log("deduct health has been called");
-  let updatedHealth = (health -= 1);
+  let updatedHealth = health--;
   console.log(updatedHealth);
-  //   const scoreDiv = document.createElement("div");
-  //   let scoreDisplay = document.createTextNode("Your score is: " + updatedHealth);
-  //   scoreDiv.appendChild(scoreDisplay);
-  //   const currentDiv = document.getElementById("scoreDisplay");
-  //   document.body.insertBefore(scoreDiv, currentDiv);
 
   // STUCK HERE.  1) How do we know which character id to update.  2) get char_health undefined because we can't
   //import sequelize for our tables.
@@ -99,18 +94,48 @@ const textNodes = [
     options: [
       {
         text: "Pack your bags and set out.",
-        nextText: 11,
+        nextText: 3,
       },
       {
         text: "Stay put.  If I don’t put the ring on, they won’t notice me.",
         damage: true,
+        nextText: 3,
+      },
+    ],
+  },
+  {
+    id: 3,
+    text: "You arrive at the town you are supposed to meet Gandalf in, but he isn’t there.  Instead, a rough-looking Man tells you Gandalf won’t be meeting you and to follow him to Rivendell.",
+    options: [
+      {
+        text: "No thanks, I’ll make my own way to Rivendell.",
+        damage: true,
+        nextText: 4,
+      },
+      {
+        text: "Nice to have you along, Mr. Strider.",
+        nextText: 4,
+      },
+    ],
+  },
+  {
+    id: 4,
+    text: "In Rivendell, it is decided the Ring must be destroyed.  You volunteer to undertake the perilous journey into the heart of Mordor in order to do this.  Saruman the White shows his true colors as a servant of Sauron and blocks the path you planned to take over the Misty Mountains.  Now you must find a way around.",
+    options: [
+      {
+        text: "Go through the Gap of Rohan, it will take you close to Saruman’s stronghold in Isengard, but you may be able to pass through unnoticed, and you can find help in Rohan.",
+        damage: true,
+        nextText: 11,
+      },
+      {
+        text: "Go through the kingdom of Moria.  The ancient Dwarven city has long been abandoned and houses unknown dangers, but it’s far from Saruman’s citadel.",
         nextText: 11,
       },
     ],
   },
   {
     id: 11,
-    text: "You threw your jar of goo at the monster and it exploded. After the dust settled you saw the monster was destroyed. Seeing your victory you decide to claim this castle as your and live out the rest of your days there.",
+    text: "With a roar, the entire land of Mordor seems to collapse around you.  The last things you see before all goes black is the tower of Barad-dûr falling, the Eye of Sauron staring around wildly, and the distant forms of eagles flying towards where you and Sam are trapped on an outcropping.  When you awake, you are in Minas Tirith, Strider, now using his true name of Aragon, Gandalf, and the rest of your companions are waiting for you.  The evil plaguing the land has been vanquished once and for all and everyone is ready to celebrate in your honor.  You watch the coronation of Aragon as the rightful King of Gondor only for him to turn to you and bow as the savior of all the free peoples of Middle Earth.  You are rewarded by the elves with passage to the Undying Lands, but your legend lives on long after you leave Middle Earth.  You have come to the end of your journey, thanks for playing!",
     options: [
       {
         text: "Congratulations. Play Again.",
