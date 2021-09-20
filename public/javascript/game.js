@@ -30,6 +30,7 @@ function showTextNode(textNodeIndex) {
 function deductHealth() {
   console.log("deduct health has been called");
   let updatedHealth = (health -= 1);
+  console.log(updatedHealth);
   //   const scoreDiv = document.createElement("div");
   //   let scoreDisplay = document.createTextNode("Your score is: " + updatedHealth);
   //   scoreDiv.appendChild(scoreDisplay);

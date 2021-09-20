@@ -37,7 +37,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(controllers);
 
 //turn on the connection to db and server
-//If any changes are made to the Models set this to force: true run once to recreate the tables, then set it back to false.
+//If any changes are made to the Models (including any associations made on the
+//index.js file in the Models folder) set this to force: true then run once to
+//recreate the tables/associations, then set it back to false.
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
 });

@@ -8,6 +8,12 @@ const { User, Character } = require("../../models");
 router.get("/", (req, res) => {
   User.findAll({
     attributes: { exclude: ["password"] },
+    include: [
+      {
+        model: Character,
+        attributes: ["id", "char_name", "char_type", "char_health"],
+      },
+    ],
   })
     .then((dbUserData) => res.json(dbUserData))
     .catch((err) => {
@@ -101,6 +107,7 @@ router.post("/login", (req, res) => {
 //example: http://localhost:3001/api/users/1
 router.put("/:id", (req, res) => {
   User.update(req.body, {
+    individualHooks: true,
     where: {
       id: req.params.id,
     },
