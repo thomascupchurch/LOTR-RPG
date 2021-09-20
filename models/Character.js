@@ -5,15 +5,16 @@ class Character extends Model {}
 
 Character.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
+    // id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+      // primaryKey: true,
+      // autoIncrement: true,
+    // },
     char_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      primaryKey: true,
+      allowNull: false
     },
     char_type: {
       type: DataTypes.STRING, //Would need to implement some type of "choice option we can use here?"

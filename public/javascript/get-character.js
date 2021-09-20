@@ -1,14 +1,21 @@
+const sequelize = require("../../config/connection");
+
 async function getCharacter() {
 
 
-    const title = document.querySelector('input[name="post-title"]').value;
-    const post_url = document.querySelector('input[name="post-url"]').value;
+    
+    // const char_id = window.location.toString().split('/')[
+    //     window.location.toString().split('/').length - 1
+    //   ];
 
-    const response = await fetch(`/api/user`, {
-        method: 'POST',
+    const response = await fetch(`/api/character`, {
+        method: 'GET',
         body: JSON.stringify({
-            title,
-            post_url
+            id,
+            char_name,
+            char_type,
+            char_health,
+            user_id
         }),
         headers: {
             'Content-Type': 'application/json'
@@ -22,4 +29,4 @@ async function getCharacter() {
     }
 }
 
-document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
+document.createElement('div[name="char_name_div"]').setAttribute(text=char_name);
