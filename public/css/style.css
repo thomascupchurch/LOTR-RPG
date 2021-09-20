@@ -27,8 +27,8 @@ body {
     padding: 0;
     background-image: url('/assets/backgrounds/bg2.png');
     background-size: cover;
-    background-position: center;
-    font-family: cursive;
+    background-position: fixed;
+    font-family: garamond, serif;
     font-size: 16px;
 }
 
@@ -59,7 +59,7 @@ h2 {
 }
 
 .btn {
-    background-color: var(--secondary);
+    background-color: var(--tertiary);
     color: var(--textcolor);
     text-decoration: none;
     border-radius: 15px;
@@ -87,4 +87,24 @@ h2 {
 
 #char-type {
     text-decoration: none;
+}
+
+.login-card {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px var(--quartiary);
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    color: var(--tertiary);
+}
+
+.signup-card {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px var(--quartiary);
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    color: var(--tertiary);
 }
