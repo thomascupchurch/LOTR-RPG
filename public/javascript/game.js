@@ -1,3 +1,6 @@
+const sequelize = require("../../config/connection");
+const { Character } = require("../../models");
+
 const textElement = document.getElementById("question-text");
 const optionButtonsElement = document.getElementById("options");
 const scoreDisplayElement = document.getElementById("score-display");
@@ -39,7 +42,7 @@ function deductHealth() {
 
   errorMusic.play();
   //passes the incremented health to the updateScoreDisplay function.
-  updateScoreDispaly(--health);
+  updateScoreDisplay(--health);
   //can I push the values here as well to the "end game" function to it
   //pushes the score to the character table on the char_health for the current
   //character?
@@ -55,7 +58,7 @@ function correctChoice() {
   correctMusic.play();
 }
 
-function updateScoreDispaly(val) {
+function updateScoreDisplay(val) {
   document.getElementById("score-display").innerHTML = "Your score: " + val;
 }
 
