@@ -31,11 +31,38 @@ function showTextNode(textNodeIndex) {
 
 function deductHealth() {
   console.log("deduct health has been called");
-  updateScoreDispaly(--health);
+  //plays error sound when the wrong choice is selected.
+  let errorMusic = new Howl({
+    src: ["/music/327737__distillerystudio__error-02.wav"],
+    volume: 0.1,
+  });
 
+  errorMusic.play();
+  //passes the incremented health to the updateScoreDisplay function.
+  updateScoreDispaly(--health);
+  //can I push the values here as well to the "end game" function to it
+  //pushes the score to the character table on the char_health for the current
+  //character?
+}
+
+//plays correct sound when the right choice is made.
+function correctChoice() {
+  let correctMusic = new Howl({
+    src: ["/music/415762__thebuilder15__notification-correct.wav"],
+    volume: 0.2,
+  });
+
+  correctMusic.play();
+}
+
+function updateScoreDispaly(val) {
+  document.getElementById("score-display").innerHTML = "Your score: " + val;
+}
+
+function endgame() {
   // STUCK HERE.  1) How do we know which character id to update.  2) get char_health undefined because we can't
   //import sequelize for our tables.
-  //   const response = fetch(`/api/characters/1`, {
+  //   const response = fetch(`/api/character/1`, {
   //     method: "PUT",
   //     body: JSON.stringify({
   //       char_health,
@@ -51,13 +78,6 @@ function deductHealth() {
   //   } else {
   //     alert(response.statusText);
   //   }
-}
-
-function updateScoreDispaly(val) {
-  document.getElementById("score-display").innerHTML = "Your score: " + val;
-}
-
-function endgame() {
   document.location.replace("/scores");
 }
 
@@ -74,6 +94,8 @@ function selectOption(option) {
   //   state = Object.assign(state, option.setState);
   if (option.damage) {
     deductHealth();
+  } else {
+    correctChoice();
   }
   if (option.endgame) {
     endgame();

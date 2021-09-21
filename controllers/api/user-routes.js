@@ -4,7 +4,7 @@ const router = require("express").Router();
 const { User, Character } = require("../../models");
 
 //get all users
-//example: http://localhost:3001/api/users
+//example: http://localhost:3001/api/user
 router.get("/", (req, res) => {
   User.findAll({
     attributes: { exclude: ["password"] },
@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
 });
 
 //get a specific user
-//example: http://localhost:3001/api/users/1
+//example: http://localhost:3001/api/user/1
 router.get("/:id", (req, res) => {
   User.findOne({
     attributes: { exclude: ["password"] },
@@ -73,6 +73,7 @@ router.post("/", (req, res) => {
 });
 
 //login user route.
+//example: http://localhost:3001/api/user/login
 router.post("/login", (req, res) => {
   // expects {username: 'mhodges', password: 'password1234'}
   console.log("login attempt", req.body);
@@ -104,7 +105,7 @@ router.post("/login", (req, res) => {
 });
 
 // PUT route:
-//example: http://localhost:3001/api/users/1
+//example: http://localhost:3001/api/user/1
 router.put("/:id", (req, res) => {
   User.update(req.body, {
     individualHooks: true,
@@ -126,6 +127,7 @@ router.put("/:id", (req, res) => {
 });
 
 //Logout route.
+//example: http://localhost:3001/api/user/logout
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
