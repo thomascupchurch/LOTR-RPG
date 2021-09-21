@@ -1,5 +1,5 @@
-const sequelize = require("../../config/connection");
-const { Character } = require("../../models");
+// const sequelize = require("../../config/connection");
+// const { Character } = require("../../models");
 
 const textElement = document.getElementById("question-text");
 const optionButtonsElement = document.getElementById("options");
