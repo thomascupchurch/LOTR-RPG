@@ -1,5 +1,8 @@
-const sequelize = require("../../config/connection");
-const { Character } = require("../../models");
+// const sequelize = require("../../config/connection");
+// const { Character } = require("../../models");
+// const { Score } = require("../../models")
+
+
 
 const textElement = document.getElementById("question-text");
 const optionButtonsElement = document.getElementById("options");
@@ -62,7 +65,46 @@ function updateScoreDisplay(val) {
   document.getElementById("score-display").innerHTML = "Your score: " + val;
 }
 
+
+function onClickSave() {
+  // event.preventDefault();
+  async function saveScore() {
+    
+
+    const finalScore = scoreDisplayElement.innerText;
+    console.log(finalScore);
+    finalScore.split(" ");
+    const final_score_num = (finalScore[finalScore.length -2] + finalScore[finalScore.length -1]);
+    console.log(final_score_num);
+    
+      const response = await fetch("/api/score", {
+        method: "post",
+        body: JSON.stringify({
+          final_score_num
+          // id, 
+          // user_id
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const data = await response.json();
+        console.log(data);
+
+      if (response.ok) {
+        document.location.replace("/character/");
+      } else {
+        alert("There was an issue with your save, please try again.");
+        //Add to add the "await" to capture the response properly.
+        
+      
+    }
+  }
+  optionButtonsElement.onclick(saveScore());
+};
+
+
 function endgame() {
+  onClickSave();
   // STUCK HERE.  1) How do we know which character id to update.  2) get char_health undefined because we can't
   //import sequelize for our tables.
   //   const response = fetch(`/api/character/1`, {
