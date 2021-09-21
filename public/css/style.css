@@ -60,11 +60,7 @@ h2 {
 }
 
 .btn {
-<<<<<<< HEAD
-    background-color: var(--lightsecondary);
-=======
     background-color: var(--tertiary);
->>>>>>> 7d5f46aa769b182dcd4cf3970eb1ab9bfb139648
     color: var(--textcolor);
     text-decoration: none;
     border: #13262F solid;

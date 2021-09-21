@@ -1,23 +1,20 @@
-const seedCharacters = require('./character-seeds');
-const seedUsers = require('./user-seeds');
+// const seedCharacters = require('./character-seeds');
+// const seedUsers = require('./user-seeds');
 
-const sequelize = require('../config/connection');
+// const sequelize = require('../config/connection');
 
-const seedAll = async () => {
-  
-  
-  await sequelize.sync({ force: false });
-  console.log('--------------');
-  
- 
-  await seedCharacters();
-  console.log('--------------');
+// const seedAll = async () => {
 
-  await seedUsers();
-  console.log('--------------');
+//   await sequelize.sync({ force: false });
+//   console.log('--------------');
 
+//   await seedCharacters();
+//   console.log('--------------');
 
-  process.exit(0);
-};
+//   await seedUsers();
+//   console.log('--------------');
 
-seedAll();
+//   process.exit(0);
+// };
+
+// seedAll();
