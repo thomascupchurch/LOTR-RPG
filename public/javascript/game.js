@@ -1,6 +1,6 @@
 const textElement = document.getElementById("question-text");
 const optionButtonsElement = document.getElementById("options");
-
+const scoreDisplayElement = document.getElementById("score-display");
 
 let state = {};
 let health = 20;
@@ -29,11 +29,9 @@ function showTextNode(textNodeIndex) {
   });
 }
 
-
 function deductHealth() {
   console.log("deduct health has been called");
-  let updatedHealth = health--;
-  console.log(updatedHealth);
+  updateScoreDispaly(--health);
 
   // STUCK HERE.  1) How do we know which character id to update.  2) get char_health undefined because we can't
   //import sequelize for our tables.
@@ -53,6 +51,10 @@ function deductHealth() {
   //   } else {
   //     alert(response.statusText);
   //   }
+}
+
+function updateScoreDispaly(val) {
+  document.getElementById("score-display").innerHTML = "Your score: " + val;
 }
 
 function endgame() {
@@ -148,7 +150,7 @@ const textNodes = [
     text: "With a roar, the entire land of Mordor seems to collapse around you.  The last things you see before all goes black is the tower of Barad-dûr falling, the Eye of Sauron staring around wildly, and the distant forms of eagles flying towards where you and Sam are trapped on an outcropping.  When you awake, you are in Minas Tirith, Strider, now using his true name of Aragon, Gandalf, and the rest of your companions are waiting for you.  The evil plaguing the land has been vanquished once and for all and everyone is ready to celebrate in your honor.  You watch the coronation of Aragon as the rightful King of Gondor only for him to turn to you and bow as the savior of all the free peoples of Middle Earth.  You are rewarded by the elves with passage to the Undying Lands, but your legend lives on long after you leave Middle Earth.  You have come to the end of your journey, thanks for playing!",
     options: [
       {
-        text: "Congratulations. Let's Checkout your score!",
+        text: "Congratulations!!  Now Click Here to Checkout your score!",
         endgame: true,
         nextText: -1,
       },
