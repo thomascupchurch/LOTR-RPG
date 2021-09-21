@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { response } = require("express");
 const { Character, User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
@@ -33,6 +34,8 @@ router.get("/:id", (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+
+    res.render('game', {title: 'character id',  char_name: 'Frodo', id: 1 });
 });
 
 router.put("/:id", (req, res) => {
@@ -73,6 +76,19 @@ router.post("/", withAuth, (req, res) => {
       console.log(err);
       res.status(400).json(err);
     });
+    // console.log('character name is ' + char_name);
+    // res.render('game', {char_name: 'Frodo', id: 1 });
 });
+
+/* GET character details by character id. */
+// router.get('/character/:id', function(req, res) {
+//   var sql = [sequelize.literal(`SELECT * FROM character WHERE id = ${req.params.id}`)];
+//   var query = db.query(sql, function (err, result) {
+//       if(err) throw err;
+//       console.log(result);
+//       var model = {result: result}
+//       res.render('views/game', {title: 'character id',  char_name: 'Frodo', id: 1 });
+//   });
+// });
 
 module.exports = router;

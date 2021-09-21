@@ -8,7 +8,7 @@ let health = 20;
 function startGame() {
   //   state = {};
   showTextNode(1);
-}
+};
 
 function showTextNode(textNodeIndex) {
   const textNode = textNodes.find((textNode) => textNode.id === textNodeIndex);
@@ -148,3 +148,5 @@ const textNodes = [
 ];
 
 startGame();
+
+

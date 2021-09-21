@@ -5,8 +5,14 @@
 
     
 <div>
-    <p>We Need you {{this.character.char_name}} go with haste!</p>
+    <p>We Need you <span>{{{ char_name }}}</span> go with haste!</p>
 </div>
+
+<template id="example">
+  <div id="charname">
+
+  </div>
+</template>
 
 
 <div class="container">
@@ -17,7 +23,7 @@
     </div>
 
 </div>
-
+<script src="/javascript/context-template.js"></script>
 <script src="/javascript/game.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
     integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
