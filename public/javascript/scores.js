@@ -1,13 +1,22 @@
-function playAgain() {
+function playAgain(event) {
+  event.preventDefault();
+
   console.log("I pushed the play again button.");
-  document.location.replace("/game");
+  document.location.replace("/character");
 }
 
-function logOut() {
-  console.log("I pushed the logout button.");
-  document.location.replace("/");
+async function logout() {
+  const response = await fetch("/api/user/logout", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (response.ok) {
+    document.location.replace("/");
+  } else {
+    alert(response.statusText);
+  }
 }
 
-document.querySelector("#playagain").addEventListener("submit", playAgain);
-
-document.querySelector("#logout").addEventListener("submit", logOut);
+document.querySelector("#logout").addEventListener("click", logout);
+document.querySelector("#playagain").addEventListener("click", playAgain);
