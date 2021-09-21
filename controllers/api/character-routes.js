@@ -29,6 +29,10 @@ router.get("/:id", (req, res) => {
     ],
   })
     .then((dbCharacterData) => res.json(dbCharacterData))
+    .then(dbCharacterData => {
+      const character = dbCharacterData.map(character => character.get({ plain: true }));
+      res.render('charname', { character, loggedIn: true });
+    })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
@@ -69,6 +73,10 @@ router.post("/", withAuth, (req, res) => {
     user_id: req.session.user_id,
   })
     .then((dbCharacterData) => res.json(dbCharacterData))
+    .then(dbCharacterData => {
+      const character = req.body.char_name;
+      req.render('charname', { character, loggedIn: true });
+    })
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);

@@ -16,7 +16,11 @@ async function newFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace("/game");
+    document.location.replace("/game")
+    .then(response => {
+      const character = response.char_name;
+      res.render('game', { character, loggedIn: true });
+    });
   } else {
     alert(response.statusText);
   }
