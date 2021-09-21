@@ -1,12 +1,12 @@
-// var template = 
-// @"<div class=""Example"">   
-//   <h1>{{header}}</h1>   
-//   <h2>{{subheader}}</h2>   
+var template = 
+@"<div class=""Example"">   
+  <h1>{{header}}</h1>   
+  <h2>{{subheader}}</h2>   
 
-//   <div class=""body"">
-//      {{body}}
-//   </div> 
-// </div>";
+  <div class=""body"">
+     {{body}}
+  </div> 
+</div>";
 
 
 // var context = new
