@@ -13,7 +13,6 @@ Character.init(
     },
     char_name: {
       type: DataTypes.STRING,
-      primaryKey: true,
       allowNull: false,
     },
     char_type: {
