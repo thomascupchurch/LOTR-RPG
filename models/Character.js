@@ -32,7 +32,7 @@ Character.init(
   },
   {
     sequelize,
-    freezeTableName: true,
+    freezeTableName: false,
     timestamps: true,
     underscored: true,
     modelName: "character",

@@ -62,25 +62,26 @@ function updateScoreDisplay(val) {
   document.getElementById("score-display").innerHTML = "Your score: " + val;
 }
 
-function endgame() {
+async function endgame() {
   // STUCK HERE.  1) How do we know which character id to update.  2) get char_health undefined because we can't
   //import sequelize for our tables.
-  //   const response = fetch(`/api/character/1`, {
-  //     method: "PUT",
-  //     body: JSON.stringify({
-  //       char_health,
-  //     }),
+    const response = await fetch(`/api/character/`, {
+      method: "PUT",
+      body: JSON.stringify({
+        health,
+      }),
 
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   console.log(response);
-  //   if (response.ok) {
-  //     console.log("Health Updated!");
-  //   } else {
-  //     alert(response.statusText);
-  //   }
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    if (response.ok) {
+      console.log("Health Updated!");
+    } else {
+      alert(response.statusText);
+    }
   document.location.replace("/scores");
 }
 
