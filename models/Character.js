@@ -14,7 +14,6 @@ Character.init(
     char_name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
     char_type: {
       type: DataTypes.STRING,
