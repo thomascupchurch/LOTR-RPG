@@ -1,13 +1,18 @@
-This is the scores page!
+<ul class="nav justify-content-center p-5">
+    <button id="playagain" class="btn line-item fs-3">Play Again!</button>
+    <button id="logout" class="btn line-item fs-3">Logout</button>
 
-<button id="playagain" class="btn">Play Again!</button>
-<button id="logout" class="btn">Logout</button>
+</ul>
 
-<div>
-    <p>Here is where the scores will be listed!</p>
-    {{#each characters}}
-    <p>{{ user.username }}'s score is {{ char_health }}</p>
-    {{/each}}
+<div class="container opacity-75">
+    <h2 class="card p-2">Top 10 Scores!
+        <h2 />
+        <ol class="list-group list-group-numbered">
+            {{#each characters}}
+            <li class="list-group-item">{{ user.username }}'s score as {{ char_name }} : {{ char_health }}</p>
+                {{/each}}
+        </ol>
+
 </div>
 
 

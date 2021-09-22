@@ -3,15 +3,6 @@ const sequelize = require("../config/connection");
 const { User, Character } = require("../models");
 const withAuth = require("../utils/auth");
 
-// router.get("/game", withAuth, (req, res) => {
-//   res.render("game"),
-//     {
-//       user: {
-//         username: "test_user",
-//       },
-//     };
-// });
-
 router.get("/game", withAuth, (req, res) => {
   console.log("trying to log ", req.session);
   console.log("==================");

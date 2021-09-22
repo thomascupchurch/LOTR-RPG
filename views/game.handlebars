@@ -1,21 +1,39 @@
-<img src='/assets/graphics/startadventure.png' alt='Game page'>
-
-<button id="logout" class="btn-no-style">logout</button>
 <div class="container">
 
-    <div id="score-display" class="fs-3">Your score: 20</div>
+    <img src='/assets/graphics/startadventure.png' alt='Game page'>
+    <button id="logout" class="btn">logout</button>
+</div>
+<div class="container">
+    <div class="card opacity-75">
 
-
-    <div>
-        <p>We Need you, {{character.char_name}}. Go with haste!</p>
+        <figure class="text-center">
+            <blockquote class="blockquote">
+                <h3 class="font">There’s some good in this world, <b
+                        class="fs-2 fst-italic text-decoration-underline">{{character.char_name}}</b>.
+                    . .and it’s
+                    worth fighting
+                    for.
+                </h3>
+            </blockquote>
+            <figcaption class="blockquote-footer fs-3">
+                Sam Gangee <cite title="Source Title fs-3">LOTR - The Two Towers</cite>
+            </figcaption>
+        </figure>
     </div>
-    
+    <div class="card opacity-75">
+
+        <div id="score-display" class="card-body fs-3 ">Your score: 20</div>
+    </div>
+
 </div>
 
 
 
 <div class="container">
-    <div id="question-text">Question:</div>
+    <div class="card opacity-75">
+
+        <div id="question-text" class="fw-bold">Question:</div>
+    </div>
     <div class="btn-grid" id="options">Options:
         <button class="btn">Option 1</button>
         <button class="btn">Option 2</button>

@@ -15,11 +15,10 @@
 /* Attempting to add a new font */
 
 @font-face {
-    font-family: Aniron, fantasy;
-    src: url('/assets/fonts/anirb___.ttf');
-    src: url('/assets/fonts/anirm___.ttf');
+    font-family: Aniron;
+    src: url('/assets/fonts/anirb___.ttf'); 
     font-weight: normal;
-    font-style: normal;
+    /* font-style: normal; */
 }
 
 body {
@@ -57,6 +56,10 @@ h2 {
     font-family: Aniron, fantasy;
     color: var(--textcolor);
     font-size: 23px;
+}
+
+.font {
+    font-family: Aniron;
 }
 
 .btn {

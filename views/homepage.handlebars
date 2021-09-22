@@ -1,47 +1,59 @@
-{{!-- login form --}}
+<div class="container p-2 opacity-75">
+    <div class="card border border-dark">
 
-
-<div class='card rounded login-card'>
-    <h2>LOGIN</h2>
-    <form class="login-form">
-        <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-                <div class="small-4 cell">
-                    <label for="user-login">Username:</label>
-                    <input class="input-field" type="text" id="user-login" />
-                </div>
-                <div class="small-4 cell">
-                    <label for="password-login">Password:</label>
-                    <input class="input-field" type="password" id="password-login" />
-                </div>
-                <div>
-                    <button type="submit" class="btn">LOGIN</button>
+        <h4 class=" card-body font lh-base m-1">You have lived in a sleepy little village in a quiet corner of Middle
+            Earth all
+            your
+            life.
+            Things like Epic Quests, Dragons, War and Monsters are nothing but legends, fairytales told you
+            by the village Elders. The only excitement you know is when the wizard GANDALF THE GREY brings his
+            fireworks every year for the Village Harvest Festival. This time, things have changed. A distant
+            relative you have only met once or twice has disappeared and has left YOU his MAGICAL RING. . .Adventure
+            Awaits.
+        </h4>
+    </div>
+    <div class='card rounded login-card border border-dark'>
+        <h2>LOGIN</h2>
+        <form class="login-form">
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">
+                    <div class="small-4 cell">
+                        <label for="user-login">Username:</label>
+                        <input class="input-field" type="text" id="user-login" />
+                    </div>
+                    <div class="small-4 cell">
+                        <label for="password-login">Password:</label>
+                        <input class="input-field" type="password" id="password-login" />
+                    </div>
+                    <div>
+                        <button type="submit" class="btn">LOGIN</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
-</div>
-{{!-- Sign Up Form. --}}
+        </form>
+    </div>
+    {{!-- Sign Up Form. --}}
 
-<div class='card rounded signup-card'>
-    <h2>SIGN UP</h2>
-    <form class="signup-form align-center">
-        <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-                <div class="small-4 cell">
-                    <label for="username-signup">Create Username:</label>
-                    <input class="input-field" type="text" id="username-signup" />
-                </div>
-                <div class="small-4 cell">
-                    <label for="password-signup">Create Password:</label>
-                    <input class="input-field" type="password" id="password-signup" />
-                </div>
-                <div>
-                    <button type="submit" class="btn">SIGN UP</button>
+    <div class='card rounded signup-card border border-dark'>
+        <h2>SIGN UP</h2>
+        <form class="signup-form align-center">
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">
+                    <div class="small-4 cell">
+                        <label for="username-signup">Create Username:</label>
+                        <input class="input-field" type="text" id="username-signup" />
+                    </div>
+                    <div class="small-4 cell">
+                        <label for="password-signup">Create Password:</label>
+                        <input class="input-field" type="password" id="password-signup" />
+                    </div>
+                    <div>
+                        <button type="submit" class="btn">SIGN UP</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 <script src="/javascript/login.js"></script>
