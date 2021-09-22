@@ -14,9 +14,10 @@ Character.init(
     char_name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     char_type: {
-      type: DataTypes.STRING, //Would need to implement some type of "choice option we can use here?"
+      type: DataTypes.STRING,
       allowNull: false,
     },
     char_health: {

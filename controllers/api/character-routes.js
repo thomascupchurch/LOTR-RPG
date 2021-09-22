@@ -3,7 +3,7 @@ const { Character, User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 //get all characters
-//example: http://localhost:3001/api/characters
+//example: http://localhost:3001/api/character
 router.get("/", (req, res) => {
   Character.findAll()
     .then((dbCharacterData) => res.json(dbCharacterData))
@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 });
 
 //get single character
-//example: http://localhost:3001/api/characters/1
+//example: http://localhost:3001/api/character/1
 router.get("/:id", (req, res) => {
   Character.findOne({
     where: {
