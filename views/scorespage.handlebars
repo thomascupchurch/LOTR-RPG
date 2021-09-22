@@ -5,6 +5,9 @@ This is the scores page!
 
 <div>
     <p>Here is where the scores will be listed!</p>
+    {{#each characters}}
+        <p>{{ user.username }}'s score is {{ char_health }}</p>
+    {{/each}}
 </div>
 
 <script src="/javascript/scores.js"></script>

@@ -3,17 +3,17 @@ const sequelize = require("../config/connection");
 const { User, Character } = require("../models");
 const withAuth = require("../utils/auth");
 
-router.get("/game", withAuth, (req, res) => {
-  res.render("game"),
-    {
-      user: {
-        username: "test_user",
-      },
-    };
-});
+// router.get("/game", withAuth, (req, res) => {
+//   res.render("game"),
+//     {
+//       user: {
+//         username: "test_user",
+//       },
+//     };
+// });
 
 router.get("/game", withAuth, (req, res) => {
-  console.log(req.session);
+  console.log('trying to log ', req.session);
   console.log("==================");
   Character.findAll({
     where: {
@@ -31,7 +31,7 @@ router.get("/game", withAuth, (req, res) => {
       const characters = dbCharData.map((character) =>
         character.get({ plain: true })
       );
-      res.render("game", { characters, loggedIn: true });
+      res.render("game", { character: characters[characters.length - 1], loggedIn: true });
     })
     .catch((err) => {
       console.log(err);
