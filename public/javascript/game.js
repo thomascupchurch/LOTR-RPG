@@ -1,3 +1,6 @@
+// const sequelize = require("../../config/connection");
+// const { Character } = require("../../models");
+
 const textElement = document.getElementById("question-text");
 const optionButtonsElement = document.getElementById("options");
 const scoreDisplayElement = document.getElementById("score-display");
@@ -39,7 +42,7 @@ function deductHealth() {
 
   errorMusic.play();
   //passes the incremented health to the updateScoreDisplay function.
-  updateScoreDispaly(--health);
+  updateScoreDisplay(--health);
   //can I push the values here as well to the "end game" function to it
   //pushes the score to the character table on the char_health for the current
   //character?
@@ -55,33 +58,29 @@ function correctChoice() {
   correctMusic.play();
 }
 
-function updateScoreDispaly(val) {
+function updateScoreDisplay(val) {
   document.getElementById("score-display").innerHTML = "Your score: " + val;
 }
 
-function endgame() {
-  // const id = req.session.user_id;
-  // console.log(id);
+async function endgame() {
   // STUCK HERE.  1) How do we know which character id to update.  2) get char_health undefined because we can't
   //import sequelize for our tables.
-  async function getId() {
-    const response = await fetch(`/api/user`, {
-      method: "GET",
-      body: JSON.stringify({
-        id,
-        username,
-      }),
+  const response = await fetch(`/api/character/`, {
+    method: "PUT",
+    body: JSON.stringify({
+      health,
+    }),
 
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    console.log(response);
-    if (response.ok) {
-      console.log(id);
-    } else {
-      alert(response.statusText);
-    }
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  console.log(data);
+  if (response.ok) {
+    console.log("Health Updated!");
+  } else {
+    alert(response.statusText);
   }
   document.location.replace("/scores");
   // getId();
