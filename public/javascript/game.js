@@ -1,6 +1,9 @@
+// const sequelize = require("../../config/connection");
+// const { Character } = require("../../models");
+
 const textElement = document.getElementById("question-text");
 const optionButtonsElement = document.getElementById("options");
-
+const scoreDisplayElement = document.getElementById("score-display");
 
 let state = {};
 let health = 20;
@@ -13,6 +16,7 @@ function startGame() {
 function showTextNode(textNodeIndex) {
   const textNode = textNodes.find((textNode) => textNode.id === textNodeIndex);
   textElement.innerText = textNode.text;
+  textElement.classList.add("fs-3");
   while (optionButtonsElement.firstChild) {
     optionButtonsElement.removeChild(optionButtonsElement.firstChild);
   }
@@ -21,37 +25,64 @@ function showTextNode(textNodeIndex) {
     if (showOption(option)) {
       const button = document.createElement("button");
       button.innerText = option.text;
-      button.classList.add("btn");
+      button.classList.add("btn", "fs-4");
       button.addEventListener("click", () => selectOption(option));
       optionButtonsElement.appendChild(button);
     }
   });
 }
 
-
 function deductHealth() {
   console.log("deduct health has been called");
-  let updatedHealth = health--;
-  console.log(updatedHealth);
+  //plays error sound when the wrong choice is selected.
+  let errorMusic = new Howl({
+    src: ["/music/327737__distillerystudio__error-02.wav"],
+    volume: 0.1,
+  });
 
+  errorMusic.play();
+  //passes the incremented health to the updateScoreDisplay function.
+  updateScoreDisplay(--health);
+  //can I push the values here as well to the "end game" function to it
+  //pushes the score to the character table on the char_health for the current
+  //character?
+}
+
+//plays correct sound when the right choice is made.
+function correctChoice() {
+  let correctMusic = new Howl({
+    src: ["/music/415762__thebuilder15__notification-correct.wav"],
+    volume: 0.2,
+  });
+
+  correctMusic.play();
+}
+
+function updateScoreDisplay(val) {
+  document.getElementById("score-display").innerHTML = "Your score: " + val;
+}
+
+async function endgame() {
   // STUCK HERE.  1) How do we know which character id to update.  2) get char_health undefined because we can't
   //import sequelize for our tables.
-  //   const response = fetch(`/api/characters/1`, {
-  //     method: "PUT",
-  //     body: JSON.stringify({
-  //       char_health,
-  //     }),
+    const response = await fetch(`/api/character/`, {
+      method: "PUT",
+      body: JSON.stringify({
+        health,
+      }),
 
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   console.log(response);
-  //   if (response.ok) {
-  //     console.log("Health Updated!");
-  //   } else {
-  //     alert(response.statusText);
-  //   }
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    if (response.ok) {
+      console.log("Health Updated!");
+    } else {
+      alert(response.statusText);
+    }
+  document.location.replace("/scores");
 }
 
 function showOption(option) {
@@ -61,12 +92,17 @@ function showOption(option) {
 function selectOption(option) {
   console.log(option);
   const nextTextNodeId = option.nextText;
-  if (nextTextNodeId <= 0) {
-    return startGame();
-  }
+  // if (nextTextNodeId <= 0) {
+  //   return startGame();
+  // }
   //   state = Object.assign(state, option.setState);
   if (option.damage) {
     deductHealth();
+  } else {
+    correctChoice();
+  }
+  if (option.endgame) {
+    endgame();
   }
   showTextNode(nextTextNodeId);
 }
@@ -140,7 +176,8 @@ const textNodes = [
     text: "With a roar, the entire land of Mordor seems to collapse around you.  The last things you see before all goes black is the tower of Barad-dûr falling, the Eye of Sauron staring around wildly, and the distant forms of eagles flying towards where you and Sam are trapped on an outcropping.  When you awake, you are in Minas Tirith, Strider, now using his true name of Aragon, Gandalf, and the rest of your companions are waiting for you.  The evil plaguing the land has been vanquished once and for all and everyone is ready to celebrate in your honor.  You watch the coronation of Aragon as the rightful King of Gondor only for him to turn to you and bow as the savior of all the free peoples of Middle Earth.  You are rewarded by the elves with passage to the Undying Lands, but your legend lives on long after you leave Middle Earth.  You have come to the end of your journey, thanks for playing!",
     options: [
       {
-        text: "Congratulations. Play Again.",
+        text: "Congratulations!!  Now Click Here to Checkout your score!",
+        endgame: true,
         nextText: -1,
       },
     ],

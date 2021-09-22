@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "node server.js",
-    "seed": "node seeds/index.js"
+    "seed": "node seeds/index.js",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "sequelize": "^6.6.5"
   },
   "devDependencies": {
-    "db-seed": "^1.2.0"
+    "db-seed": "^1.2.0",
+    "nodemon": "^2.0.12"
   }
 }

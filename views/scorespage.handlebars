@@ -1,1 +1,13 @@
 This is the scores page!
+
+<button id="playagain" class="btn">Play Again!</button>
+<button id="logout" class="btn">Logout</button>
+
+<div>
+    <p>Here is where the scores will be listed!</p>
+    {{#each characters}}
+        <p>{{ user.username }}'s score is {{ char_health }}</p>
+    {{/each}}
+</div>
+
+<script src="/javascript/scores.js"></script>

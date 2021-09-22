@@ -4,12 +4,11 @@ async function newFormHandler(event) {
   const char_name = document.querySelector('input[name="charName"]').value;
   const char_type = document.querySelector('select[name="char-type"]').value;
 
-  const response = await fetch("/api/characters", {
+  const response = await fetch("/api/character", {
     method: "POST",
     body: JSON.stringify({
       char_name,
       char_type,
-      // user_id
     }),
     headers: {
       "Content-Type": "application/json",
@@ -18,16 +17,11 @@ async function newFormHandler(event) {
 
   if (response.ok) {
     document.location.replace("/game");
-    }
-   else {
+  } else {
     alert(response.statusText);
   }
-  
-};
+}
 
 document
   .querySelector(".create-char-form")
-  .addEventListener("submit", newFormHandler)
-  
-
-  
+  .addEventListener("submit", newFormHandler);

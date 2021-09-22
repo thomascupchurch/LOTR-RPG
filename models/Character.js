@@ -13,8 +13,7 @@ Character.init(
     },
     char_name: {
       type: DataTypes.STRING,
-      primaryKey: true,
-      allowNull: false
+      allowNull: false,
     },
     char_type: {
       type: DataTypes.STRING, //Would need to implement some type of "choice option we can use here?"

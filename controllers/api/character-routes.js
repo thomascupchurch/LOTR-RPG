@@ -35,14 +35,15 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.put("/:id", (req, res) => {
+router.put("/", (req, res) => {
+  console.log("this should be our req.body", req.body);
   Character.update(
     {
-      char_health: req.body.char_health,
+      char_health: req.body.health,
     },
     {
       where: {
-        id: req.params.id,
+        id: req.session.current_char,
       },
     }
   )
@@ -68,7 +69,10 @@ router.post("/", withAuth, (req, res) => {
     char_type: req.body.char_type,
     user_id: req.session.user_id,
   })
-    .then((dbCharacterData) => res.json(dbCharacterData))
+    .then((dbCharacterData) => {
+      req.session.current_char = dbCharacterData.id;
+      res.json(dbCharacterData);
+    })
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
