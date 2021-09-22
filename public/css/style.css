@@ -94,28 +94,28 @@ h2 {
 .login-card {
     display: flex;
     flex-wrap: wrap;
-    border: 1px var(--quartiary);
+    border: 1px solid var(--quartiary);
     border-radius: 5px;
     margin: 5px;
     padding: 5px;
-    color: var(--tertiary);
+    background-color: var(--tertiary);
 }
 
 .signup-card {
     display: flex;
     flex-wrap: wrap;
-    border: 1px var(--quartiary);
+    border: 1px solid var(--quartiary);
     border-radius: 5px;
     margin: 5px;
     padding: 5px;
-    color: var(--tertiary);
+    background-color: var(--tertiary);
 }
 
 .character-form-card {
     display: flex;
     flex-wrap: wrap;
-    border: 1px var(--quartiary);
+    border: 1px solid var(--quartiary);
     margin: 5px;
     padding: 5px;
-    color: var(--tertiary);
+    background-color: var(--tertiary);
 }
