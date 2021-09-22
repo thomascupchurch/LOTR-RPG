@@ -60,25 +60,31 @@ function updateScoreDispaly(val) {
 }
 
 function endgame() {
+  // const id = req.session.user_id;
+  // console.log(id);
   // STUCK HERE.  1) How do we know which character id to update.  2) get char_health undefined because we can't
   //import sequelize for our tables.
-  //   const response = fetch(`/api/character/1`, {
-  //     method: "PUT",
-  //     body: JSON.stringify({
-  //       char_health,
-  //     }),
+  async function getId() {
+    const response = await fetch(`/api/user`, {
+      method: "GET",
+      body: JSON.stringify({
+        id,
+        username,
+      }),
 
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   console.log(response);
-  //   if (response.ok) {
-  //     console.log("Health Updated!");
-  //   } else {
-  //     alert(response.statusText);
-  //   }
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(response);
+    if (response.ok) {
+      console.log(id);
+    } else {
+      alert(response.statusText);
+    }
+  }
   document.location.replace("/scores");
+  // getId();
 }
 
 function showOption(option) {

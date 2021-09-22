@@ -18,7 +18,7 @@ async function newFormHandler(event) {
   if (response.ok) {
     document.location.replace("/game");
   } else {
-    alert(response.statusText);
+    alert("Character Names Must be unique!");
   }
 }
 

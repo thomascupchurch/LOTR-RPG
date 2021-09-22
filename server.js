@@ -31,6 +31,7 @@ app.set("view engine", "handlebars");
 app.use(express.json());
 //Should this be extended true?
 app.use(express.urlencoded({ extended: false }));
+//setting the pulbic folder as our main static folder.
 app.use(express.static(path.join(__dirname, "public")));
 
 // turn on the controllers (api and page routes).
