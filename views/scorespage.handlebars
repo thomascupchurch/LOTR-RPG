@@ -3,11 +3,11 @@ This is the scores page!
 <button id="playagain" class="btn">Play Again!</button>
 <button id="logout" class="btn">Logout</button>
 
-
-
-{{#each character}}
-<div id="scores-div">
-    <p>{{char_name}} the {{char_type}} - Score: {{char_health}}</p>
+<div>
+    <p>Here is where the scores will be listed!</p>
+    {{#each characters}}
+    <p>{{ user.username }}'s score is {{ char_health }}</p>
+    {{/each}}
 </div>
 {{else}}
 <p>No Scores Available</p>

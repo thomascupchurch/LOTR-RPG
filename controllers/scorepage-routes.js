@@ -1,14 +1,23 @@
-const { Character } = require("../models");
+const { Character, User } = require("../models");
 
 const router = require("express").Router();
 
 router.get("/scores", (req, res) => {
-  res.render("scorespage");
-  //This is where we do the database query.
-  Character.findAll().then((dbCharData) => {
+  Character.findAll({
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+    limit: 10,
+    order: [["char_health", "DESC"]],
+  }).then((dbCharData) => {
     const characters = dbCharData.map((character) =>
       character.get({ plain: true })
     );
+    console.log(characters);
+    res.render("scorespage", { characters });
   });
 });
 

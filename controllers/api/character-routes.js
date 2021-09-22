@@ -35,14 +35,15 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.put("/:id", (req, res) => {
+router.put("/", (req, res) => {
+  console.log("this should be our req.body", req.body);
   Character.update(
     {
-      char_health: req.body.char_health,
+      char_health: req.body.health,
     },
     {
       where: {
-        id: req.params.id,
+        id: req.session.current_char,
       },
     }
   )
@@ -69,7 +70,6 @@ router.post("/", withAuth, (req, res) => {
     user_id: req.session.user_id,
   })
     .then((dbCharacterData) => {
-      //saving the current character that is created with the current login session.
       req.session.current_char = dbCharacterData.id;
       res.json(dbCharacterData);
     })
