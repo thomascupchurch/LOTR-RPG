@@ -1,3 +1,26 @@
+async function showScores() {
+  const scoresElement = document.getElementById("scores-div");
+  console.log("showScores has been called");
+  const response = await fetch("/api/character", {
+    method: "GET",
+    body: JSON.stringify({
+      char_name,
+      char_type,
+      char_health,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  console.log(response);
+  if (response.ok) {
+    console.log(response);
+    document.location.reload();
+  } else {
+    alert(response.statusText);
+  }
+}
+
 function playAgain(event) {
   event.preventDefault();
 
@@ -20,3 +43,5 @@ async function logout() {
 
 document.querySelector("#logout").addEventListener("click", logout);
 document.querySelector("#playagain").addEventListener("click", playAgain);
+
+showScores();

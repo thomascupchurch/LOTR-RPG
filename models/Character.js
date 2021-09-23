@@ -16,11 +16,12 @@ Character.init(
       allowNull: false,
     },
     char_type: {
-      type: DataTypes.STRING, //Would need to implement some type of "choice option we can use here?"
+      type: DataTypes.STRING,
       allowNull: false,
     },
     char_health: {
       type: DataTypes.INTEGER,
+      defaultValue: 0,
     },
     user_id: {
       type: DataTypes.INTEGER,
