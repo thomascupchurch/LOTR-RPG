@@ -39,10 +39,14 @@ router.put("/", (req, res) => {
   console.log("this should be our req.body", req.body);
   Character.update(
     {
+      //Assigning updated value of char_health with the
+      //req.body.health (see game.js line 73)
       char_health: req.body.health,
     },
     {
       where: {
+        //this is how it knows which character id
+        //to update by matching it with the current session current_char.
         id: req.session.current_char,
       },
     }

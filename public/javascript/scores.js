@@ -1,6 +1,8 @@
 async function showScores() {
   const scoresElement = document.getElementById("scores-div");
   console.log("showScores has been called");
+  //uses the character routes setup in character-routes.js
+  //to get all the character data.
   const response = await fetch("/api/character", {
     method: "GET",
     body: JSON.stringify({
@@ -23,8 +25,7 @@ async function showScores() {
 
 function playAgain(event) {
   event.preventDefault();
-
-  console.log("I pushed the play again button.");
+  //when they push play again redirect them back to the character page.
   document.location.replace("/character");
 }
 
