@@ -1,6 +1,3 @@
-// const sequelize = require("../../config/connection");
-// const { Character } = require("../../models");
-
 const textElement = document.getElementById("question-text");
 const optionButtonsElement = document.getElementById("options");
 const scoreDisplayElement = document.getElementById("score-display");
@@ -9,7 +6,6 @@ let state = {};
 let health = 20;
 
 function startGame() {
-  //   state = {};
   showTextNode(1);
 }
 
