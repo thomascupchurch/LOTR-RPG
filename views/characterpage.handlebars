@@ -1,34 +1,57 @@
-<button id="logout" class="btn">logout</button>
+<div class="container">
 
-<img src='/assets/graphics/charactercreator.png' alt='Character creator'>
+    <div class="container">
 
-<div class='card rounded character-form-card'>
-    <form id="character-form" class="create-char-form align-center">
-        <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-                <div class="medium-6 cell">
-                    <label class="font fs-5" for="name">Name your character!</label><br>
-                    <input class="input-field" type="text" id="name" name="charName"><br><br>
+        <img src='/assets/graphics/charactercreator.png' alt='Character creator'>
+        <button id="logout" class="btn">logout</button>
+    </div>
+
+    <div class='card rounded character-form-card'>
+        <form id="character-form" class="create-char-form align-center">
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">
+                    <div class="medium-6 cell">
+                        <label class="font fs-5" for="name">Name your character!</label><br>
+                        <input class="input-field" type="text" id="name" name="charName"><br><br>
+                    </div>
+                    <div class="medium-6 cell">
+                        <label class="font fs-5" for="char-type">Choose your Role:</label>
+
+                        <select id="char-type" name="char-type">
+                            <option value="Hobbit">Hobbit</option>
+                            <option value="Human">Human</option>
+                            <option value="Wizard">Wizard</option>
+                            <option value="Elf">Elf</option>
+                            <option value="Dwarf">Dwarf</option>
+                        </select>
+                    </div>
+                    <div class="cell">
+                        <button id="create-char-button" type="submit" class="btn">
+                            Create Character
+                        </button>
+                    </div>
                 </div>
-                <div class="medium-6 cell">
-                    <label class="font fs-5" for="char-type">Choose your Role:</label>
+            </div>
+        </form>
+    </div>
 
-                    <select id="char-type" name="char-type">
-                        <option value="Hobbit">Hobbit</option>
-                        <option value="Human">Human</option>
-                        <option value="Wizard">Wizard</option>
-                        <option value="Elf">Elf</option>
-                        <option value="Dwarf">Dwarf</option>
-                    </select>
+    <div class="container">
+
+        <!-- Music Controls -->
+        <div class="card opacity-50 rounded-pill sticky-top" style="width: max-content;">
+            {{!-- <h4 class="card-header">
+                Audio:
+            </h4> --}}
+            <div class="card-body row row-cols-2">
+                <div id="playBtn">
+                    <img src="https://img.icons8.com/material-outlined/24/000000/play--v1.png" />
                 </div>
-                <div class="cell">
-                    <button id="create-char-button" type="submit" class="btn">
-                        Create Character
-                    </button>
+                <div id="pauseBtn">
+                    <img src="https://img.icons8.com/material/24/000000/pause--v1.png" />
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 
 

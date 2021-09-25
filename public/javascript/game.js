@@ -1,6 +1,3 @@
-// const sequelize = require("../../config/connection");
-// const { Character } = require("../../models");
-
 const textElement = document.getElementById("question-text");
 const optionButtonsElement = document.getElementById("options");
 const scoreDisplayElement = document.getElementById("score-display");
@@ -9,7 +6,6 @@ let state = {};
 let health = 20;
 
 function startGame() {
-  //   state = {};
   showTextNode(1);
 }
 
@@ -63,11 +59,13 @@ function updateScoreDisplay(val) {
 }
 
 async function endgame() {
-  // STUCK HERE.  1) How do we know which character id to update.  2) get char_health undefined because we can't
-  //import sequelize for our tables.
+  //We were stuck here but now we're not!
+  //uses the api/character route to PUT (Update) the health to the character table via the api route.
   const response = await fetch(`/api/character/`, {
     method: "PUT",
     body: JSON.stringify({
+      //pushing the health value to the char_health for the character.
+      //see character-routes.js line 44
       health,
     }),
 
@@ -82,8 +80,8 @@ async function endgame() {
   } else {
     alert(response.statusText);
   }
+  //after everythign is done push the user to the scores page.
   document.location.replace("/scores");
-  // getId();
 }
 
 function showOption(option) {
@@ -93,10 +91,7 @@ function showOption(option) {
 function selectOption(option) {
   console.log(option);
   const nextTextNodeId = option.nextText;
-  // if (nextTextNodeId <= 0) {
-  //   return startGame();
-  // }
-  //   state = Object.assign(state, option.setState);
+
   if (option.damage) {
     deductHealth();
   } else {

@@ -8,8 +8,11 @@
     <h2 class="card p-2">Top 10 Scores!
         <h2 />
         <ol class="list-group list-group-numbered">
-            {{#each characters}}
-            <li class="list-group-item">{{ user.username }}'s score as {{ char_name }} : {{ char_health }}</p>
+            {{#each characters}} {{!-- loops through the characters variable which is the character model data. (see
+            scorepage-routes.js) --}}
+            {{!-- uses dot notation to get the value needed from the model(s) in our database. --}}
+            <li class="list-group-item">{{ user.username }}'s score as {{ char_name }} the {{char_type}} : {{
+                char_health }}</p>
                 {{/each}}
         </ol>
 

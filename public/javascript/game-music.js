@@ -4,4 +4,17 @@ let gameMusic = new Howl({
   loop: true,
 });
 
+let elms = ["playBtn", "pauseBtn"];
+elms.forEach(function (elm) {
+  window[elm] = document.getElementById(elm);
+});
+
+// Bind our player controls.
+playBtn.addEventListener("click", function () {
+  gameMusic.play();
+});
+pauseBtn.addEventListener("click", function () {
+  gameMusic.pause();
+});
+
 gameMusic.play();
